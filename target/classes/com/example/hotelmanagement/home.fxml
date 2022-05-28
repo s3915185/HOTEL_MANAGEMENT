@@ -10,23 +10,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="620.0" prefWidth="1180.0" style="-fx-background-color: #F0A07C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.HomeController">
    <children>
       <VBox fx:id="leftnavigation" accessibleRole="TREE_VIEW" alignment="BASELINE_CENTER" minHeight="520.0" prefHeight="520.0" prefWidth="300.0" spacing="5.0" style="-fx-background-color: #4A274F;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="120.0">
          <children>
-            <Text fill="WHITE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="Actions:">
-               <font>
-                  <Font name="Bodoni MT Condensed Bold Italic" size="38.0" />
-               </font>
-            </Text>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check In">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -34,7 +28,7 @@
             </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Check Out">
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -42,7 +36,7 @@
             </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -50,7 +44,7 @@
             </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Hall Reservation">
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -58,7 +52,7 @@
             </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Service">
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -66,7 +60,7 @@
             </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Voucher">
                <font>
-                  <Font name="Bodoni MT Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -86,11 +80,6 @@
       </ImageView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A274F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:">
-               <font>
-                  <Font name="Bodoni MT Condensed Bold Italic" size="55.0" />
-               </font>
-            </Text>
             <VBox prefHeight="100.0" prefWidth="1180.0" style="-fx-background-color: #4A274F;">
                <children>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
