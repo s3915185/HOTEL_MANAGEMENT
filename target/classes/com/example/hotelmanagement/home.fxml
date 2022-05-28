@@ -1,16 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="620.0" prefWidth="1180.0" style="-fx-background-color: #F0A07C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.HomeController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A274F;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <VBox fx:id="leftnavigation" minHeight="520.0" prefHeight="520.0" prefWidth="300.0" style="-fx-background-color: #4A274F;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="120.0" />
+      <VBox fx:id="leftnavigation" accessibleRole="TREE_VIEW" alignment="BASELINE_CENTER" minHeight="520.0" prefHeight="520.0" prefWidth="300.0" spacing="5.0" style="-fx-background-color: #4A274F;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="120.0">
+         <children>
+            <Text fill="WHITE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="0.0" text="Actions:">
+               <font>
+                  <Font name="Bodoni MT Condensed Bold Italic" size="38.0" />
+               </font>
+            </Text>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check In">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Check Out">
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Hall Reservation">
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Service">
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Voucher">
+               <font>
+                  <Font name="Bodoni MT Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></VBox>
       <ImageView fitHeight="590.0" fitWidth="830.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0">
          <image>
             <Image url="@../../../images/homewallpaper.jpg" />
@@ -19,5 +84,66 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4A274F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports:">
+               <font>
+                  <Font name="Bodoni MT Condensed Bold Italic" size="55.0" />
+               </font>
+            </Text>
+            <VBox prefHeight="100.0" prefWidth="1180.0" style="-fx-background-color: #4A274F;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="DayBook">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check Out Due">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Overall Report">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Occupancy">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Hall Reservation">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="All Transactions">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Debtors List">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
