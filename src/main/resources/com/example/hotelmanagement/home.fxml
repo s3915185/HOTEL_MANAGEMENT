@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1180.0" style="-fx-background-color: #F0A07C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.HomeController">
+<AnchorPane prefHeight="1020.0" prefWidth="1920.0" style="-fx-background-color: #F0A07C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.HomeController">
    <children>
       <VBox fx:id="leftnavigation" accessibleRole="TREE_VIEW" alignment="BASELINE_CENTER" minHeight="520.0" prefHeight="520.0" prefWidth="300.0" spacing="5.0" style="-fx-background-color: #4A274F;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="120.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check In">
+            <Button fx:id="btnCheckIn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check In">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -26,7 +26,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Check Out">
+            <Button fx:id="btnCheckOut" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Check Out">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
+            <Button fx:id="btnRoomReservation" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Hall Reservation">
+            <Button fx:id="btnHallReservation" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Hall Reservation">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Service">
+            <Button fx:id="btnRoomService" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Service">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Voucher">
+            <Button fx:id="btnVoucher" contentDisplay="CENTER" mnemonicParsing="false" onAction="#moveToPage" prefHeight="30.0" prefWidth="290.0" style="-fx-background-color: #F0A09F;" text="Voucher">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -84,22 +84,22 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="DayBook">
+                        <Button fx:id="reportDayBook" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="DayBook">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check Out Due">
+                        <Button fx:id="reportCheckOutDue" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Check Out Due">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Overall Report">
+                        <Button fx:id="reportOverall" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Overall Report">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Occupancy">
+                        <Button fx:id="reportRoomOccupancy" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Occupancy">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -108,22 +108,22 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Hall Reservation">
+                        <Button fx:id="reportHallReservation" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Hall Reservation">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
+                        <Button fx:id="reportRoomReservation" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Room Reservation">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="All Transactions">
+                        <Button fx:id="reportAllTransactions" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="All Transactions">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Debtors List">
+                        <Button fx:id="reportDebtors" mnemonicParsing="false" onAction="#moveToReport" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #F0A08F;" text="Debtors List">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
