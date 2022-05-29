@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #0F0F0F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckInController">
+<AnchorPane prefHeight="880.0" prefWidth="1520.0" style="-fx-background-color: #0F0F0F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckInController">
    <children>
-      <Text fill="WHITE" layoutX="393.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is for CheckIn" />
+      <Text fill="WHITE" layoutX="712.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is for CheckIn" />
    </children>
 </AnchorPane>
