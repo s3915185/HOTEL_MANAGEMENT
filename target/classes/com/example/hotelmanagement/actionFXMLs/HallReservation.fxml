@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #0F0F0F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.HallReservationController">
+   <children>
+      <Text fill="WHITE" layoutX="439.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is for Hall Reservation" />
+   </children>
+</AnchorPane>
