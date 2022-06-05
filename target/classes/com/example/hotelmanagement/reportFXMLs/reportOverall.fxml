@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.hotelmanagement.reportControllers.ReportOverallController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.reportControllers.reportOverall.ReportOverallController">
+   <children>
+      <TableView fx:id="custormerInfo" prefHeight="275.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="custId" prefWidth="87.0" text="Customer's ID" />
+          <TableColumn fx:id="custf" prefWidth="117.0" text="First Name" />
+          <TableColumn fx:id="custl" prefWidth="94.0" text="Last Name" />
+            <TableColumn fx:id="address" prefWidth="366.0" text="Address" />
+            <TableColumn fx:id="status" prefWidth="335.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
