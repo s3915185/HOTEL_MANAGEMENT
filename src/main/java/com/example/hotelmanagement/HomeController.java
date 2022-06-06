@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,16 +36,11 @@ public class HomeController implements Initializable {
         }
     }
 
-    public void moveToPage(ActionEvent event) {
+    public void moveToPage(ActionEvent event) throws IOException {
         Button actionClicked = (Button) event.getSource();
         String actionId = actionClicked.getId().substring(3);
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("actionFXMLs/" + actionId + ".fxml")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mainPane.setCenter(root);
+        Pane view = FXMLLoader.load(getClass().getResource("actionFXMLs/" + actionId + ".fxml"));
+        mainPane.setCenter(view);
     }
 
     @Override

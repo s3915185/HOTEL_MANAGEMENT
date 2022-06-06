@@ -1,30 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="880.0" prefWidth="1520.0" style="-fx-background-color: #F0A08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckInController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="930.0" prefWidth="1600.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../images/actionLogo/CHECK-IN.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </top>
-      </BorderPane>
+      <HBox alignment="CENTER" layoutX="500.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/actionLogo/CHECK-IN.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Line endX="1485.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
+      <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="10.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Line endX="1104.0" layoutX="46.0" layoutY="100.0" stroke="#4a274f" />
+      <TextField layoutX="196.0" layoutY="144.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="170.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="196.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="222.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="248.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="274.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField layoutX="196.0" layoutY="300.0" prefHeight="26.0" prefWidth="93.0" />
+      <TextField layoutX="196.0" layoutY="326.0" prefHeight="26.0" prefWidth="270.0" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSN:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="House Number:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="District:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" />
+      <Text fill="#4a274f" layoutX="95.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" />
+      <Line endX="-62.5" endY="3.5" layoutX="134.0" layoutY="133.0" startX="-62.5" startY="235.24264526367188" stroke="#4a274f" />
+      <Line endX="306.5" endY="0.82843017578125" layoutX="172.0" layoutY="366.0" startX="-100.08578491210938" startY="0.82843017578125" stroke="#4a274f" />
+      <Line endX="-122.0" endY="-197.0" layoutX="601.0" layoutY="334.0" startX="-122.0" startY="33.32843017578125" stroke="#4a274f" />
+      <Text fill="#4a274f" layoutX="112.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" />
+      <Line endX="33.5" endY="2.0" layoutX="72.0" layoutY="134.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
+      <Line endX="-147.5" endY="-4.5" layoutX="303.0" layoutY="141.0" startX="175.5" startY="-4.5" stroke="#4a274f" />
+      <Circle fill="#4a274f" layoutX="163.0" layoutY="137.0" radius="10.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Text fill="#4a274f" layoutX="610.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
+      <Text fill="#4a274f" layoutX="610.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
+      <Text fill="#4a274f" layoutX="610.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
+      <Text fill="#4a274f" layoutX="610.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
+      <Text fill="#4a274f" layoutX="843.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
+      <Text fill="#4a274f" layoutX="643.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Request" />
+      <Line endX="33.5" endY="2.0" layoutX="600.0" layoutY="131.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
+      <Line endX="-62.5" endY="3.5" layoutX="661.0" layoutY="129.0" startX="-61.20709228515625" startY="133.20709228515625" stroke="#4a274f" />
+      <Line endX="325.5" endY="2.5" layoutX="698.0" layoutY="259.0" startX="-97.5" startY="2.5" stroke="#4a274f" />
+      <Line endX="-147.5" endY="-4.5" layoutX="889.0" layoutY="140.0" startX="134.5" startY="-4.5" stroke="#4a274f" />
+      <Circle fill="#4a274f" layoutX="749.0" layoutY="136.0" radius="10.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Line endX="-122.0" endY="-195.0" layoutX="1145.0" layoutY="331.0" startX="-122.0" startY="-70.0" stroke="#4a274f" />
+      <ChoiceBox layoutX="713.0" layoutY="150.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="713.0" layoutY="176.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="863.0" layoutY="176.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="713.0" layoutY="202.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="863.0" layoutY="202.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="713.0" layoutY="227.0" prefHeight="26.0" prefWidth="55.0" />
+      <ChoiceBox layoutX="958.0" layoutY="227.0" prefHeight="26.0" prefWidth="55.0" />
+      <Text fill="#4a274f" layoutX="112.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Availability" />
+      <Line endX="33.5" endY="2.0" layoutX="72.0" layoutY="417.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
+      <Line endX="-62.5" endY="3.5" layoutX="134.0" layoutY="416.0" startX="-62.5" startY="263.32843017578125" stroke="#4a274f" />
+      <TableView layoutX="95.0" layoutY="438.0" prefHeight="233.0" prefWidth="622.0">
+        <columns>
+            <TableColumn prefWidth="79.0" text="Room Id" />
+          <TableColumn prefWidth="87.0" text="Room No." />
+          <TableColumn prefWidth="112.0" text="Room Type" />
+            <TableColumn prefWidth="131.0" text="Room Charges" />
+            <TableColumn prefWidth="212.0" text="Request Contradiction" />
+        </columns>
+      </TableView>
+      <Line endX="-147.5" endY="-2.5" layoutX="374.0" layoutY="424.0" startX="362.5" startY="-2.5" stroke="#4a274f" />
+      <Circle fill="#4a274f" layoutX="234.0" layoutY="422.0" radius="10.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Line endX="540.5" endY="0.82843017578125" layoutX="196.0" layoutY="679.0" startX="-125.0" startY="0.82843017578125" stroke="#4a274f" />
+      <Line endX="-122.0" endY="-225.0" layoutX="859.0" layoutY="646.0" startX="-122.0" startY="33.32843017578125" stroke="#4a274f" />
+      <Text layoutX="902.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Information" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room No." />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Charges:" />
+      <ChoiceBox layoutX="920.0" layoutY="373.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="920.0" layoutY="399.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="1070.0" layoutY="399.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="920.0" layoutY="425.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="1070.0" layoutY="425.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="920.0" layoutY="450.0" prefHeight="26.0" prefWidth="55.0" />
+      <Text fill="#4a274f" layoutX="1050.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
+      <ChoiceBox layoutX="1165.0" layoutY="450.0" prefHeight="26.0" prefWidth="55.0" />
+      <TextField layoutX="986.0" layoutY="502.0" prefHeight="26.0" prefWidth="121.0" />
+      <ChoiceBox layoutX="986.0" layoutY="476.0" prefWidth="150.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Charges:" />
+      <TextField layoutX="986.0" layoutY="528.0" prefHeight="26.0" prefWidth="121.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:" />
+      <TextField layoutX="926.0" layoutY="554.0" prefHeight="26.0" prefWidth="90.0" />
+      <Text layoutX="1024.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+      <TextField layoutX="1055.0" layoutY="555.0" prefHeight="26.0" prefWidth="166.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changes:" />
+      <TextField layoutX="925.0" layoutY="580.0" prefHeight="26.0" prefWidth="121.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grand Total:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="706.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
+      <TextField layoutX="935.0" layoutY="636.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField layoutX="935.0" layoutY="662.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField layoutX="935.0" layoutY="688.0" prefHeight="26.0" prefWidth="121.0" />
    </children>
-</AnchorPane>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</Pane>
