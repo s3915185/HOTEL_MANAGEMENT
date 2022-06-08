@@ -2,6 +2,7 @@ package com.example.hotelmanagement.actionControllers.CheckIn;
 
 import com.example.hotelmanagement.DatabaseConnection;
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -128,6 +129,12 @@ public class CheckInController implements Initializable {
     }
 
     public void customerEraseTempInfoClicked() {
+        if (userFirstName.getText().isEmpty() && userLastName.getText().isEmpty() && userSSN.getText().isEmpty() && userHouseNumber.getText().isEmpty() &&
+                userDistrict.getText().isEmpty() && userState.getText().isEmpty() && userGender.getText().isEmpty() && userPhoneNumber.getText().isEmpty()) {
+            System.out.println("All inputs are blank");
+            jigglingAnimation(customerErase);
+            return;
+        }
         rollingAnimation(customerErase);
         userFirstName.clear();
         userLastName.clear();
@@ -140,28 +147,31 @@ public class CheckInController implements Initializable {
     }
 
     public void customerAddClicked() {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
+        if (userFirstName.getText().isEmpty() || userLastName.getText().isEmpty() || userSSN.getText().isEmpty() || userHouseNumber.getText().isEmpty() ||
+                userDistrict.getText().isEmpty() || userState.getText().isEmpty() || userGender.getText().isEmpty() || userPhoneNumber.getText().isEmpty()) {
+            System.out.println("The inputs cannot be left blank");
+            jigglingAnimation(customerAdd);
+            return;
+        }
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
 
-        String connectQuery = "INSERT INTO Customer (custfname, custlname, SSN, housenumber, district, state, gender, phonenumber) VALUES " +
-                "(?,?,?,?,?,?,?,?); ";
-        if (!(userFirstName.getText().isEmpty() && userLastName.getText().isEmpty() && userSSN.getText().isEmpty() && userHouseNumber.getText().isEmpty() &&
-                userDistrict.getText().isEmpty() && userState.getText().isEmpty() && userGender.getText().isEmpty() && userPhoneNumber.getText().isEmpty())) {
-            try {
-                PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
-                preparedStatement.setString(1, userFirstName.getText());
-                preparedStatement.setString(2, userLastName.getText());
-                preparedStatement.setString(3, userSSN.getText());
-                preparedStatement.setString(4, userHouseNumber.getText());
-                preparedStatement.setString(5, userDistrict.getText());
-                preparedStatement.setString(6, userState.getText());
-                preparedStatement.setString(7, userGender.getText());
-                preparedStatement.setString(8, userPhoneNumber.getText());
-                preparedStatement.execute();
-                rollingAnimation(customerAdd);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            String connectQuery = "INSERT INTO Customer (custfname, custlname, SSN, housenumber, district, state, gender, phonenumber) VALUES " +
+                    "(?,?,?,?,?,?,?,?); ";
+            PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
+            preparedStatement.setString(1, userFirstName.getText());
+            preparedStatement.setString(2, userLastName.getText());
+            preparedStatement.setString(3, userSSN.getText());
+            preparedStatement.setString(4, userHouseNumber.getText());
+            preparedStatement.setString(5, userDistrict.getText());
+            preparedStatement.setString(6, userState.getText());
+            preparedStatement.setString(7, userGender.getText());
+            preparedStatement.setString(8, userPhoneNumber.getText());
+            preparedStatement.execute();
+            rollingAnimation(customerAdd);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -191,9 +201,17 @@ public class CheckInController implements Initializable {
 
 
     private void rollingAnimation(ImageView icon) {
-        RotateTransition rollingAnimation = new RotateTransition(Duration.millis(500), icon);
+        RotateTransition rollingAnimation = new RotateTransition(Duration.millis(300), icon);
         rollingAnimation.setByAngle(360);
         rollingAnimation.setCycleCount(1);
         rollingAnimation.play();
+    }
+
+    private void jigglingAnimation (ImageView icon) {
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(20), icon);
+        translateTransition.setByX(2f);
+        translateTransition.setCycleCount(2);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
     }
 }
