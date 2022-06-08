@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.actionControllers.CheckIn;
 
 import com.example.hotelmanagement.DatabaseConnection;
+import com.example.hotelmanagement.Main;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -124,7 +125,9 @@ public class CheckInController implements Initializable {
     @FXML
     private ImageView reloadTotalPage;
 
+
     public void reloadTotalPageClicked() {
+        setInfoForOldCustomer();
         rollingAnimation(reloadTotalPage);
     }
 
@@ -144,6 +147,7 @@ public class CheckInController implements Initializable {
         userState.clear();
         userGender.clear();
         userPhoneNumber.clear();
+        Main.setIDcurrentGuest(0);
     }
 
     public void customerAddClicked() {
@@ -213,5 +217,24 @@ public class CheckInController implements Initializable {
         translateTransition.setCycleCount(2);
         translateTransition.setAutoReverse(true);
         translateTransition.play();
+    }
+
+    public void setInfoForOldCustomer() {
+        Main.getUserData().forEach(user -> {
+            if (Main.getIDcurrentGuest() == Integer.parseInt(user.getCust_ID())) {
+                userFirstName.setText(user.getCustfname());
+                userLastName.setText(user.getCustlname());
+                userSSN.setText(user.getSSN());
+                userHouseNumber.setText(user.getHousenumber());
+                userDistrict.setText(user.getDistrict());
+                userState.setText(user.getState());
+                userGender.setText(user.getGender());
+                userPhoneNumber.setText(user.getPhonenumber());
+            }
+        });
+    }
+
+    public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
+        setInfoForOldCustomer();
     }
 }
