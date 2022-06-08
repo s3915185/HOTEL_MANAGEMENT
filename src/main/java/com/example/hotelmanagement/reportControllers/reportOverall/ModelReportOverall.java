@@ -15,6 +15,18 @@ public class ModelReportOverall {
         this.phonenumber = phonenumber;
     }
 
+    public ModelReportOverall(String cust_ID, String custfname, String custlname, String phonenumber) {
+        this.cust_ID = cust_ID;
+        this.custfname = custfname;
+        this.custlname = custlname;
+        this.SSN = null;
+        this.housenumber = null;
+        this.district = null;
+        this.state = null;
+        this.gender = null;
+        this.phonenumber = phonenumber;
+    }
+
     public String getCust_ID() {
         return cust_ID;
     }

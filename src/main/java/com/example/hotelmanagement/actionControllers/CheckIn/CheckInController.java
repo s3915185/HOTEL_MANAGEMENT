@@ -1,13 +1,17 @@
-package com.example.hotelmanagement.actionControllers;
+package com.example.hotelmanagement.actionControllers.CheckIn;
 
 import com.example.hotelmanagement.DatabaseConnection;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -162,6 +166,17 @@ public class CheckInController implements Initializable {
     }
 
     public void customerListClicked() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hotelmanagement/actionFXMLs/CheckIn/UserRegistered.fxml"));
+            Parent customerListRoot = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(customerListRoot));
+            stage.setTitle("Old Customers List");
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         rollingAnimation(customerList);
     }
 

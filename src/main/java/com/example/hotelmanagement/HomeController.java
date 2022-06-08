@@ -39,7 +39,7 @@ public class HomeController implements Initializable {
     public void moveToPage(ActionEvent event) throws IOException {
         Button actionClicked = (Button) event.getSource();
         String actionId = actionClicked.getId().substring(3);
-        Pane view = FXMLLoader.load(getClass().getResource("actionFXMLs/" + actionId + ".fxml"));
+        Pane view = FXMLLoader.load(getClass().getResource("actionFXMLs/" + actionId +"/"+ actionId + ".fxml"));
         mainPane.setCenter(view);
     }
 
