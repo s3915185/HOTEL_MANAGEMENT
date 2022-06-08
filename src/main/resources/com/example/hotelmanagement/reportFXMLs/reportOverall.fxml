@@ -5,15 +5,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.reportControllers.reportOverall.ReportOverallController">
+<AnchorPane prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.reportControllers.reportOverall.ReportOverallController">
    <children>
-      <TableView fx:id="custormerInfo" prefHeight="275.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="custormerInfo" prefHeight="275.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
             <TableColumn fx:id="custId" prefWidth="87.0" text="Customer's ID" />
           <TableColumn fx:id="custf" prefWidth="117.0" text="First Name" />
           <TableColumn fx:id="custl" prefWidth="94.0" text="Last Name" />
-            <TableColumn fx:id="address" prefWidth="366.0" text="Address" />
-            <TableColumn fx:id="status" prefWidth="335.0" text="Status" />
+            <TableColumn fx:id="ssn" prefWidth="79.0" text="SSN" />
+            <TableColumn fx:id="housenumber" prefWidth="230.0" text="House Number" />
+            <TableColumn fx:id="district" prefWidth="173.0" text="District" />
+            <TableColumn fx:id="state" prefWidth="119.0" text="State" />
+            <TableColumn fx:id="gender" minWidth="0.0" prefWidth="51.0" text="Gender" />
+            <TableColumn fx:id="phonenumber" maxWidth="500.0" prefWidth="249.0" text="Phone Number" />
         </columns>
       </TableView>
       <Button layoutX="26.0" layoutY="305.0" mnemonicParsing="false" text="Button" />

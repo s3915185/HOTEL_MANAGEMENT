@@ -168,7 +168,7 @@
       <TextField fx:id="grandTotal" layoutX="935.0" layoutY="636.0" prefHeight="26.0" prefWidth="121.0" />
       <TextField fx:id="totalPaid" layoutX="935.0" layoutY="662.0" prefHeight="26.0" prefWidth="121.0" />
       <TextField fx:id="balance" layoutX="935.0" layoutY="688.0" prefHeight="26.0" prefWidth="121.0" />
-      <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="7.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="reloadTotalPage" fitHeight="16.0" fitWidth="18.0" layoutX="7.0" layoutY="101.0" onMouseClicked="#reloadTotalPageClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/logo/reloadLogo.png" />
          </image>
@@ -176,7 +176,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="16.0" fitWidth="20.0" layoutX="155.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customerList" fitHeight="16.0" fitWidth="20.0" layoutX="155.0" layoutY="130.0" onMouseClicked="#customerListClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/logo/customerListLogo.png" />
          </image>
@@ -184,7 +184,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="189.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customerAdd" fitHeight="16.0" fitWidth="16.0" layoutX="189.0" layoutY="128.0" onMouseClicked="#customerAddClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/logo/customerAddLogo.png" />
          </image>
@@ -192,7 +192,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="customerErase" fitHeight="14.0" fitWidth="14.0" layoutX="222.0" layoutY="130.0" onMouseClicked="#customerEraseTempInfo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customerErase" fitHeight="14.0" fitWidth="14.0" layoutX="222.0" layoutY="130.0" onMouseClicked="#customerEraseTempInfoClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/logo/customerEraseLogo.png" />
          </image>
@@ -200,7 +200,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="customerEraseRR" fitHeight="14.0" fitWidth="14.0" layoutX="742.0" layoutY="129.0" onMouseClicked="#customerEraseTempInfo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customerEraseRR" fitHeight="14.0" fitWidth="14.0" layoutX="742.0" layoutY="129.0" onMouseClicked="#customerEraseTempInfoClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/logo/customerEraseLogo.png" />
          </image>

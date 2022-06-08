@@ -1,11 +1,17 @@
 package com.example.hotelmanagement.actionControllers;
 
+import com.example.hotelmanagement.DatabaseConnection;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class CheckInController implements Initializable {
@@ -104,7 +110,21 @@ public class CheckInController implements Initializable {
     @FXML
     private TextField userState;
 
-    public void customerEraseTempInfo() {
+    @FXML
+    private ImageView customerErase;
+    @FXML
+    private ImageView customerAdd;
+    @FXML
+    private ImageView customerList;
+    @FXML
+    private ImageView reloadTotalPage;
+
+    public void reloadTotalPageClicked() {
+        rollingAnimation(reloadTotalPage);
+    }
+
+    public void customerEraseTempInfoClicked() {
+        rollingAnimation(customerErase);
         userFirstName.clear();
         userLastName.clear();
         userSSN.clear();
@@ -115,6 +135,36 @@ public class CheckInController implements Initializable {
         userPhoneNumber.clear();
     }
 
+    public void customerAddClicked() {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String connectQuery = "INSERT INTO Customer (custfname, custlname, SSN, housenumber, district, state, gender, phonenumber) VALUES " +
+                "(?,?,?,?,?,?,?,?); ";
+        if (!(userFirstName.getText().isEmpty() && userLastName.getText().isEmpty() && userSSN.getText().isEmpty() && userHouseNumber.getText().isEmpty() &&
+                userDistrict.getText().isEmpty() && userState.getText().isEmpty() && userGender.getText().isEmpty() && userPhoneNumber.getText().isEmpty())) {
+            try {
+                PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
+                preparedStatement.setString(1, userFirstName.getText());
+                preparedStatement.setString(2, userLastName.getText());
+                preparedStatement.setString(3, userSSN.getText());
+                preparedStatement.setString(4, userHouseNumber.getText());
+                preparedStatement.setString(5, userDistrict.getText());
+                preparedStatement.setString(6, userState.getText());
+                preparedStatement.setString(7, userGender.getText());
+                preparedStatement.setString(8, userPhoneNumber.getText());
+                preparedStatement.execute();
+                rollingAnimation(customerAdd);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void customerListClicked() {
+        rollingAnimation(customerList);
+    }
+
 
 
     @Override
@@ -122,5 +172,13 @@ public class CheckInController implements Initializable {
         choiceboxRoomTypeRR.getItems().addAll(roomType);
         choiceboxAdultsRR.getItems().addAll(adultsRR);
         choiceboxChildrensRR.getItems().addAll(childrensRR);
+    }
+
+
+    private void rollingAnimation(ImageView icon) {
+        RotateTransition rollingAnimation = new RotateTransition(Duration.millis(500), icon);
+        rollingAnimation.setByAngle(360);
+        rollingAnimation.setCycleCount(1);
+        rollingAnimation.play();
     }
 }
