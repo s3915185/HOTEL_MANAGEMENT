@@ -2,7 +2,7 @@ package com.example.hotelmanagement.reportControllers.reportOverall;
 
 import com.example.hotelmanagement.Main;
 
-import javafx.collections.ObservableList;
+import com.example.hotelmanagement.Objects.UserInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -16,34 +16,34 @@ public class ReportOverallController implements Initializable {
 
 
     @FXML
-    private TableColumn<ModelReportOverall, String> custId;
+    private TableColumn<UserInformation, Integer> custId;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> custf;
+    private TableColumn<UserInformation, String> custf;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> custl;
+    private TableColumn<UserInformation, String> custl;
 
     @FXML
-    private TableView<ModelReportOverall> custormerInfo;
+    private TableView<UserInformation> custormerInfo;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> district;
+    private TableColumn<UserInformation, String> district;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> gender;
+    private TableColumn<UserInformation, String> gender;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> housenumber;
+    private TableColumn<UserInformation, String> housenumber;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> phonenumber;
+    private TableColumn<UserInformation, String> phonenumber;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> ssn;
+    private TableColumn<UserInformation, String> ssn;
 
     @FXML
-    private TableColumn<ModelReportOverall, String> state;
+    private TableColumn<UserInformation, String> state;
 
 
 

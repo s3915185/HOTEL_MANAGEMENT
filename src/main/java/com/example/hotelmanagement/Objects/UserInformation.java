@@ -1,9 +1,10 @@
-package com.example.hotelmanagement.reportControllers.reportOverall;
+package com.example.hotelmanagement.Objects;
 
-public class ModelReportOverall {
-    private String cust_ID, custfname, custlname, SSN, housenumber, district, state, gender, phonenumber;
+public class UserInformation {
+    private String custfname, custlname, SSN, housenumber, district, state, gender, phonenumber;
+    private int cust_ID;
 
-    public ModelReportOverall(String cust_ID, String custfname, String custlname, String SSN, String housenumber, String district, String state, String gender, String phonenumber) {
+    public UserInformation(int cust_ID, String custfname, String custlname, String SSN, String housenumber, String district, String state, String gender, String phonenumber) {
         this.cust_ID = cust_ID;
         this.custfname = custfname;
         this.custlname = custlname;
@@ -15,7 +16,7 @@ public class ModelReportOverall {
         this.phonenumber = phonenumber;
     }
 
-    public ModelReportOverall(String cust_ID, String custfname, String custlname, String phonenumber) {
+    public UserInformation(int cust_ID, String custfname, String custlname, String phonenumber) {
         this.cust_ID = cust_ID;
         this.custfname = custfname;
         this.custlname = custlname;
@@ -27,11 +28,11 @@ public class ModelReportOverall {
         this.phonenumber = phonenumber;
     }
 
-    public String getCust_ID() {
+    public int getCust_ID() {
         return cust_ID;
     }
 
-    public void setCust_ID(String cust_ID) {
+    public void setCust_ID(int cust_ID) {
         this.cust_ID = cust_ID;
     }
 

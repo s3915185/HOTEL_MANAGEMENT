@@ -157,6 +157,11 @@ public class CheckInController implements Initializable {
             jigglingAnimation(customerAdd);
             return;
         }
+        if (Main.getIDcurrentGuest() != 0) {
+            System.out.println("This is already a guest");
+            jigglingAnimation(customerAdd);
+            return;
+        }
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
@@ -174,6 +179,7 @@ public class CheckInController implements Initializable {
             preparedStatement.setString(8, userPhoneNumber.getText());
             preparedStatement.execute();
             rollingAnimation(customerAdd);
+            Main.loadUserData();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -221,7 +227,7 @@ public class CheckInController implements Initializable {
 
     public void setInfoForOldCustomer() {
         Main.getUserData().forEach(user -> {
-            if (Main.getIDcurrentGuest() == Integer.parseInt(user.getCust_ID())) {
+            if (Main.getIDcurrentGuest() == user.getCust_ID()) {
                 userFirstName.setText(user.getCustfname());
                 userLastName.setText(user.getCustlname());
                 userSSN.setText(user.getSSN());

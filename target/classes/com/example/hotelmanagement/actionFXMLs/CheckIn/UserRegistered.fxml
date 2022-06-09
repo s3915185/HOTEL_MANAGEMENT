@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,6 +13,9 @@
           <TableColumn fx:id="userLastName" prefWidth="191.0" text="Last Name" />
             <TableColumn fx:id="userPhoneNumber" prefWidth="244.0" text="Phone Number" />
         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </TableView>
    </children>
 </AnchorPane>
