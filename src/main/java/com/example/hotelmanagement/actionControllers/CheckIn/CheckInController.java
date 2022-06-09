@@ -2,6 +2,7 @@ package com.example.hotelmanagement.actionControllers.CheckIn;
 
 import com.example.hotelmanagement.DatabaseConnection;
 import com.example.hotelmanagement.Main;
+import com.example.hotelmanagement.Objects.RoomInformation;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -10,7 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import javafx.stage.Stage;
@@ -125,6 +129,20 @@ public class CheckInController implements Initializable {
     @FXML
     private ImageView reloadTotalPage;
 
+    @FXML
+    private TableView<RoomInformation> roomAvailabilityT;
+    @FXML
+    private TableColumn<RoomInformation, Integer> roomNumberTC;
+    @FXML
+    private TableColumn<RoomInformation, String> roomQualityTC;
+    @FXML
+    private TableColumn<RoomInformation, String> roomTypeTC;
+    @FXML
+    private TableColumn<RoomInformation, Double> roomChargesTC;
+    @FXML
+    private TableColumn<RoomInformation, String> roomCommentsTC;
+
+
 
     public void reloadTotalPageClicked() {
         setInfoForOldCustomer();
@@ -148,6 +166,14 @@ public class CheckInController implements Initializable {
         userGender.clear();
         userPhoneNumber.clear();
         Main.setIDcurrentGuest(0);
+        userFirstName.setEditable(true);
+        userLastName.setEditable(true);
+        userSSN.setEditable(true);
+        userHouseNumber.setEditable(true);
+        userDistrict.setEditable(true);
+        userState.setEditable(true);
+        userGender.setEditable(true);
+        userPhoneNumber.setEditable(true);
     }
 
     public void customerAddClicked() {
@@ -201,12 +227,25 @@ public class CheckInController implements Initializable {
     }
 
 
+    public void reloadRoomAvailabilityClicked() {
+
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceboxRoomTypeRR.getItems().addAll(roomType);
         choiceboxAdultsRR.getItems().addAll(adultsRR);
         choiceboxChildrensRR.getItems().addAll(childrensRR);
+
+
+        roomNumberTC.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+        roomQualityTC.setCellValueFactory(new PropertyValueFactory<>("room_quality"));
+        roomTypeTC.setCellValueFactory(new PropertyValueFactory<>("room_type"));
+        roomChargesTC.setCellValueFactory(new PropertyValueFactory<>("room_price"));
+        roomCommentsTC.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        roomAvailabilityT.setItems(Main.getRoomData());
     }
 
 
@@ -238,6 +277,16 @@ public class CheckInController implements Initializable {
                 userPhoneNumber.setText(user.getPhonenumber());
             }
         });
+        if (Main.getIDcurrentGuest() != 0 ) {
+            userFirstName.setEditable(false);
+            userLastName.setEditable(false);
+            userSSN.setEditable(false);
+            userHouseNumber.setEditable(false);
+            userDistrict.setEditable(false);
+            userState.setEditable(false);
+            userGender.setEditable(false);
+            userPhoneNumber.setEditable(false);
+        }
     }
 
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
