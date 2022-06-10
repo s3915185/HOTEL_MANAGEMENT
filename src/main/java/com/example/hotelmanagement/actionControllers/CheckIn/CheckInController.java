@@ -79,7 +79,7 @@ public class CheckInController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceboxRoomTypeRR;
 
-    private String[] roomType = {"Single", "Double", "King", "Studio", "Master Suite"};
+    private String[] roomType = {"All Type", "Single", "Double", "King", "Studio", "Master Suite"};
 
     @FXML
     private TextField discountPercent;
@@ -228,8 +228,17 @@ public class CheckInController implements Initializable {
 
 
     public void reloadRoomAvailabilityClicked() {
-
-
+        String roomType = choiceboxRoomTypeRR.getValue();
+        if (roomType == "All Type") {
+            roomType = null;
+        }
+        Main.loadRoomData(roomType);
+        roomNumberTC.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+        roomQualityTC.setCellValueFactory(new PropertyValueFactory<>("room_quality"));
+        roomTypeTC.setCellValueFactory(new PropertyValueFactory<>("room_type"));
+        roomChargesTC.setCellValueFactory(new PropertyValueFactory<>("room_price"));
+        roomCommentsTC.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        roomAvailabilityT.setItems(Main.getRoomData());
     }
 
 

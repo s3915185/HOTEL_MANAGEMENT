@@ -16,18 +16,6 @@ public class UserInformation {
         this.phonenumber = phonenumber;
     }
 
-    public UserInformation(int cust_ID, String custfname, String custlname, String phonenumber) {
-        this.cust_ID = cust_ID;
-        this.custfname = custfname;
-        this.custlname = custlname;
-        this.SSN = null;
-        this.housenumber = null;
-        this.district = null;
-        this.state = null;
-        this.gender = null;
-        this.phonenumber = phonenumber;
-    }
-
     public int getCust_ID() {
         return cust_ID;
     }

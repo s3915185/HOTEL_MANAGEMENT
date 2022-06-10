@@ -13,8 +13,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -41,7 +41,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
         loadUserData();
-        loadRoomData();
+        loadRoomData("");
 
 
     }
@@ -73,16 +73,20 @@ public class Main extends Application {
 
     }
 
-    public static void loadRoomData() {
+    public static void loadRoomData(String roomType) {
         if (roomDataObjectList != null) {
             roomDataObjectList.clear();
+        }
+        String roomTypeQuery = "";
+        if (!Objects.equals(roomType, null)) {
+            roomTypeQuery = " AND rc.name = " + "'"+ roomType + "'";
         }
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String connectQuery = "SELECT r.room_ID as room_ID, r.roomNumber as room_number, rq.quality as room_quality, rc.name as room_type, (rc.price * rq.priceMultiply) as room_price, rc.description as comments" +
                 " FROM Room r, RoomQuality rq, RoomClass rc" +
                 " WHERE r.roomQuality = rq.roomQuality_ID" +
-                " AND rc.class_ID = r.class_ID" +
+                " AND rc.class_ID = r.class_ID" + roomTypeQuery +
                 " ORDER BY r.room_ID";
         try {
             Statement statement = connectDB.createStatement();
@@ -98,8 +102,6 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
     public static ObservableList<UserInformation> getUserData() {
         return userDataObjectList;

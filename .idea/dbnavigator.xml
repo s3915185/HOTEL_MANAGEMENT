@@ -41,7 +41,9 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.employees" active-filter-id="" />
     <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.customer" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.roomclass" active-filter-id="" />
     <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.reports" active-filter-id="" />
+    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.room" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
