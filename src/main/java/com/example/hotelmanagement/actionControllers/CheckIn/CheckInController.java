@@ -141,6 +141,8 @@ public class CheckInController implements Initializable {
     private TableColumn<RoomInformation, Double> roomChargesTC;
     @FXML
     private TableColumn<RoomInformation, String> roomCommentsTC;
+    @FXML
+    private ImageView reloadRoomAvailability;
 
 
 
@@ -156,24 +158,10 @@ public class CheckInController implements Initializable {
             jigglingAnimation(customerErase);
             return;
         }
-        rollingAnimation(customerErase);
-        userFirstName.clear();
-        userLastName.clear();
-        userSSN.clear();
-        userHouseNumber.clear();
-        userDistrict.clear();
-        userState.clear();
-        userGender.clear();
-        userPhoneNumber.clear();
+        userEntryClear();
         Main.setIDcurrentGuest(0);
-        userFirstName.setEditable(true);
-        userLastName.setEditable(true);
-        userSSN.setEditable(true);
-        userHouseNumber.setEditable(true);
-        userDistrict.setEditable(true);
-        userState.setEditable(true);
-        userGender.setEditable(true);
-        userPhoneNumber.setEditable(true);
+        setUserEntryEditable(true);
+        rollingAnimation(customerErase);
     }
 
     public void customerAddClicked() {
@@ -188,6 +176,117 @@ public class CheckInController implements Initializable {
             jigglingAnimation(customerAdd);
             return;
         }
+
+        insertCustomer();
+        userEntryClear();
+    }
+
+    public void customerListClicked() {
+        openOldCustomerList();
+        rollingAnimation(customerList);
+    }
+
+
+    public void reloadRoomAvailabilityClicked() {
+        String roomType = choiceboxRoomTypeRR.getValue();
+        if (roomType == "All Type") {
+            roomType = null;
+        }
+        Main.loadRoomData(roomType);
+        displayRoomAvailability();
+        rollingAnimation(reloadRoomAvailability);
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        choiceboxRoomTypeRR.getItems().addAll(roomType);
+        choiceboxAdultsRR.getItems().addAll(adultsRR);
+        choiceboxChildrensRR.getItems().addAll(childrensRR);
+        Main.loadRoomData(null);
+        displayRoomAvailability();
+    }
+
+
+    private void rollingAnimation(ImageView icon) {
+        RotateTransition rollingAnimation = new RotateTransition(Duration.millis(300), icon);
+        rollingAnimation.setByAngle(360);
+        rollingAnimation.setCycleCount(1);
+        rollingAnimation.play();
+    }
+
+    private void jigglingAnimation (ImageView icon) {
+        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(20), icon);
+        translateTransition.setByX(2f);
+        translateTransition.setCycleCount(2);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
+    }
+
+    public void setInfoForOldCustomer() {
+        Main.getUserData().forEach(user -> {
+            if (Main.getIDcurrentGuest() == user.getCust_ID()) {
+                System.out.println(user.getClass());
+                userFirstName.setText(user.getCustfname());
+                userLastName.setText(user.getCustlname());
+                userSSN.setText(user.getSSN());
+                userHouseNumber.setText(user.getHousenumber());
+                userDistrict.setText(user.getDistrict());
+                userState.setText(user.getState());
+                userGender.setText(user.getGender());
+                userPhoneNumber.setText(user.getPhonenumber());
+            }
+        });
+        if (Main.getIDcurrentGuest() != 0 ) {
+            setUserEntryEditable(false);
+        }
+    }
+
+    private void displayRoomAvailability() {
+        roomNumberTC.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+        roomQualityTC.setCellValueFactory(new PropertyValueFactory<>("room_quality"));
+        roomTypeTC.setCellValueFactory(new PropertyValueFactory<>("room_type"));
+        roomChargesTC.setCellValueFactory(new PropertyValueFactory<>("room_price"));
+        roomCommentsTC.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        roomAvailabilityT.setItems(Main.getRoomData());
+    }
+
+    private void userEntryClear() {
+        userFirstName.clear();
+        userLastName.clear();
+        userSSN.clear();
+        userHouseNumber.clear();
+        userDistrict.clear();
+        userState.clear();
+        userGender.clear();
+        userPhoneNumber.clear();
+    }
+
+    private void setUserEntryEditable(boolean value) {
+        userFirstName.setEditable(value);
+        userLastName.setEditable(value);
+        userSSN.setEditable(value);
+        userHouseNumber.setEditable(value);
+        userDistrict.setEditable(value);
+        userState.setEditable(value);
+        userGender.setEditable(value);
+        userPhoneNumber.setEditable(value);
+    }
+
+    private void openOldCustomerList() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hotelmanagement/actionFXMLs/CheckIn/UserRegistered.fxml"));
+            Parent customerListRoot = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(customerListRoot));
+            stage.setTitle("Old Customers List");
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void insertCustomer() {
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
@@ -210,94 +309,6 @@ public class CheckInController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    public void customerListClicked() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hotelmanagement/actionFXMLs/CheckIn/UserRegistered.fxml"));
-            Parent customerListRoot = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(customerListRoot));
-            stage.setTitle("Old Customers List");
-            stage.show();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        rollingAnimation(customerList);
-    }
-
-
-    public void reloadRoomAvailabilityClicked() {
-        String roomType = choiceboxRoomTypeRR.getValue();
-        if (roomType == "All Type") {
-            roomType = null;
-        }
-        Main.loadRoomData(roomType);
-        roomNumberTC.setCellValueFactory(new PropertyValueFactory<>("room_number"));
-        roomQualityTC.setCellValueFactory(new PropertyValueFactory<>("room_quality"));
-        roomTypeTC.setCellValueFactory(new PropertyValueFactory<>("room_type"));
-        roomChargesTC.setCellValueFactory(new PropertyValueFactory<>("room_price"));
-        roomCommentsTC.setCellValueFactory(new PropertyValueFactory<>("comments"));
-        roomAvailabilityT.setItems(Main.getRoomData());
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        choiceboxRoomTypeRR.getItems().addAll(roomType);
-        choiceboxAdultsRR.getItems().addAll(adultsRR);
-        choiceboxChildrensRR.getItems().addAll(childrensRR);
-
-
-        roomNumberTC.setCellValueFactory(new PropertyValueFactory<>("room_number"));
-        roomQualityTC.setCellValueFactory(new PropertyValueFactory<>("room_quality"));
-        roomTypeTC.setCellValueFactory(new PropertyValueFactory<>("room_type"));
-        roomChargesTC.setCellValueFactory(new PropertyValueFactory<>("room_price"));
-        roomCommentsTC.setCellValueFactory(new PropertyValueFactory<>("comments"));
-        roomAvailabilityT.setItems(Main.getRoomData());
-    }
-
-
-    private void rollingAnimation(ImageView icon) {
-        RotateTransition rollingAnimation = new RotateTransition(Duration.millis(300), icon);
-        rollingAnimation.setByAngle(360);
-        rollingAnimation.setCycleCount(1);
-        rollingAnimation.play();
-    }
-
-    private void jigglingAnimation (ImageView icon) {
-        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(20), icon);
-        translateTransition.setByX(2f);
-        translateTransition.setCycleCount(2);
-        translateTransition.setAutoReverse(true);
-        translateTransition.play();
-    }
-
-    public void setInfoForOldCustomer() {
-        Main.getUserData().forEach(user -> {
-            if (Main.getIDcurrentGuest() == user.getCust_ID()) {
-                userFirstName.setText(user.getCustfname());
-                userLastName.setText(user.getCustlname());
-                userSSN.setText(user.getSSN());
-                userHouseNumber.setText(user.getHousenumber());
-                userDistrict.setText(user.getDistrict());
-                userState.setText(user.getState());
-                userGender.setText(user.getGender());
-                userPhoneNumber.setText(user.getPhonenumber());
-            }
-        });
-        if (Main.getIDcurrentGuest() != 0 ) {
-            userFirstName.setEditable(false);
-            userLastName.setEditable(false);
-            userSSN.setEditable(false);
-            userHouseNumber.setEditable(false);
-            userDistrict.setEditable(false);
-            userState.setEditable(false);
-            userGender.setEditable(false);
-            userPhoneNumber.setEditable(false);
-        }
-    }
-
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
         setInfoForOldCustomer();
     }
