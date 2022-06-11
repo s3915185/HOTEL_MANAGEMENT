@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
@@ -22,6 +19,8 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class CheckInController implements Initializable {
@@ -78,6 +77,8 @@ public class CheckInController implements Initializable {
 
     @FXML
     private ChoiceBox<String> choiceboxRoomTypeRR;
+    @FXML
+    private DatePicker choiceboxRoomDateInDateRR;
 
     private String[] roomType = {"All Type", "Single", "Double", "King", "Studio", "Master Suite"};
 
@@ -143,7 +144,16 @@ public class CheckInController implements Initializable {
     private TableColumn<RoomInformation, String> roomCommentsTC;
     @FXML
     private ImageView reloadRoomAvailability;
-
+    @FXML
+    private DatePicker choiceboxRoomDateOutDateRR;
+    @FXML
+    private ChoiceBox<Integer> choiceboxRoomDateInHourRR;
+    @FXML
+    private ChoiceBox<Integer> choiceboxRoomDateInMinuteRR;
+    @FXML
+    private ChoiceBox<Integer> choiceboxRoomDateOutHourRR;
+    @FXML
+    private ChoiceBox<Integer> choiceboxRoomDateOutMinuteRR;
 
 
     public void reloadTotalPageClicked() {
@@ -309,7 +319,22 @@ public class CheckInController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void DateTimeInitializer() {
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        choiceboxRoomDateInDateRR.setValue(localDate);
+        choiceboxRoomDateOutDateRR.setValue(localDate.plusDays(1));
+        choiceboxRoomDateInHourRR.setValue(localTime.getHour());
+        choiceboxRoomDateInMinuteRR.setValue(localTime.getMinute());
+        choiceboxRoomDateOutHourRR.setValue(localTime.getHour());
+        choiceboxRoomDateOutMinuteRR.setValue(localTime.getMinute());
+        System.out.println(choiceboxRoomDateInDateRR.getValue().getClass());
+    }
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
         setInfoForOldCustomer();
+        reloadRoomAvailabilityClicked();
+        DateTimeInitializer();
     }
+
 }
