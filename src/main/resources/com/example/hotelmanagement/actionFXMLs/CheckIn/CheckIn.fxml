@@ -74,10 +74,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ChoiceBox>
-      <DatePicker fx:id="choiceboxRoomDateInDateRR" layoutX="713.0" layoutY="176.0" prefHeight="25.0" prefWidth="150.0" />
+      <DatePicker fx:id="choiceboxRoomDateInDateRR" layoutX="713.0" layoutY="176.0" onAction="#showHourForDateIn" prefHeight="25.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choiceboxRoomDateInHourRR" layoutX="861.0" layoutY="176.0" prefHeight="25.0" prefWidth="78.0" />
       <ChoiceBox fx:id="choiceboxRoomDateInMinuteRR" layoutX="936.0" layoutY="176.0" prefHeight="25.0" prefWidth="78.0" />
-      <DatePicker fx:id="choiceboxRoomDateOutDateRR" layoutX="713.0" layoutY="202.0" prefHeight="25.0" prefWidth="150.0" />
+      <DatePicker fx:id="choiceboxRoomDateOutDateRR" layoutX="713.0" layoutY="202.0" onAction="#showHourForDateOut" prefHeight="25.0" prefWidth="150.0" />
       <ChoiceBox fx:id="choiceboxRoomDateOutHourRR" layoutX="861.0" layoutY="202.0" prefHeight="25.0" prefWidth="78.0" />
       <ChoiceBox fx:id="choiceboxRoomDateOutMinuteRR" layoutX="936.0" layoutY="202.0" prefHeight="25.0" prefWidth="78.0" />
       <ChoiceBox fx:id="choiceboxAdultsRR" layoutX="713.0" layoutY="227.0" prefHeight="26.0" prefWidth="55.0">

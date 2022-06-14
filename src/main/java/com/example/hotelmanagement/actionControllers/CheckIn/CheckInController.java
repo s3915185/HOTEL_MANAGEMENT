@@ -5,6 +5,7 @@ import com.example.hotelmanagement.Main;
 import com.example.hotelmanagement.Objects.RoomInformation;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class CheckInController implements Initializable {
@@ -155,6 +157,11 @@ public class CheckInController implements Initializable {
     @FXML
     private ChoiceBox<Integer> choiceboxRoomDateOutMinuteRR;
 
+    private Integer[] dateInHourArray;
+    private Integer[] dateInMinuteArray;
+    private Integer[] dateOutHourArray;
+    private Integer[] dateOutMinuteArray;
+
 
     public void reloadTotalPageClicked() {
         setInfoForOldCustomer();
@@ -215,6 +222,10 @@ public class CheckInController implements Initializable {
         choiceboxChildrensRR.getItems().addAll(childrensRR);
         Main.loadRoomData(null);
         displayRoomAvailability();
+        DateTimeInitializer(choiceboxRoomDateInDateRR, choiceboxRoomDateInHourRR, choiceboxRoomDateInMinuteRR);
+        DateTimeInitializer(choiceboxRoomDateOutDateRR, choiceboxRoomDateOutHourRR, choiceboxRoomDateOutMinuteRR);
+        setHourBasedOnDate(choiceboxRoomDateInDateRR.getValue(), choiceboxRoomDateInHourRR, choiceboxRoomDateInHourRR.getValue());
+        setHourBasedOnDate(choiceboxRoomDateOutDateRR.getValue(), choiceboxRoomDateOutHourRR, choiceboxRoomDateOutHourRR.getValue());
     }
 
 
@@ -320,21 +331,68 @@ public class CheckInController implements Initializable {
         }
     }
 
-    private void DateTimeInitializer() {
+    private void DateTimeInitializer(DatePicker forDate, ChoiceBox<Integer> forHour, ChoiceBox<Integer> forMinute) {
+
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
-        choiceboxRoomDateInDateRR.setValue(localDate);
-        choiceboxRoomDateOutDateRR.setValue(localDate.plusDays(1));
-        choiceboxRoomDateInHourRR.setValue(localTime.getHour());
-        choiceboxRoomDateInMinuteRR.setValue(localTime.getMinute());
-        choiceboxRoomDateOutHourRR.setValue(localTime.getHour());
-        choiceboxRoomDateOutMinuteRR.setValue(localTime.getMinute());
-        System.out.println(choiceboxRoomDateInDateRR.getValue().getClass());
-    }
-    public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
-        setInfoForOldCustomer();
-        reloadRoomAvailabilityClicked();
-        DateTimeInitializer();
+
+        forDate.setValue(localDate);
+        forHour.setValue(localTime.getHour());
+        forHour.setValue(localTime.getHour());
+        forMinute.setValue(localTime.getMinute());
     }
 
+    private void setHourBasedOnDate(LocalDate date, ChoiceBox<Integer> forHour, Integer value) {
+        forHour.getItems().clear();
+        if (date.isEqual(LocalDate.now())) {
+            Integer[] forHourArray = new Integer[(24 - LocalTime.now().getHour())];
+            int arrayIndex = 0;
+            for (int i = LocalTime.now().getHour(); i < 24; i++) {
+                forHourArray[arrayIndex] = i;
+                arrayIndex++;
+            }
+            forHour.getItems().addAll(forHourArray);
+        }
+        else {
+            Integer[] forHourArray = new Integer[24];
+            for (int i = 0; i < 24; i++) {
+                forHourArray[i] = i;
+            }
+            forHour.getItems().addAll(forHourArray);
+        }
+        forHour.setValue(value);
+    }
+    private void setMinuteBasedOnHour(Integer hour, ChoiceBox<Integer> forMinute, Integer value) {
+        forMinute.getItems().clear();
+        if (LocalTime.now().getHour() == hour) {
+            Integer[] forMinuteArray = new Integer[(60 - LocalTime.now().getMinute())];
+            int arrayIndex = 0;
+            for (int i = LocalTime.now().getMinute(); i < 60; i++) {
+                forMinuteArray[arrayIndex] = i;
+                arrayIndex++;
+            }
+            forMinute.getItems().addAll(forMinuteArray);
+        }
+        else {
+            Integer[] forMinuteArray = new Integer[60];
+            for (int i = 0; i < 60; i++) {
+                forMinuteArray[i] = i;
+            }
+            forMinute.getItems().addAll(forMinuteArray);
+        }
+        forMinute.setValue(value);
+    }
+
+    public void showHourForDateIn(ActionEvent actionEvent) {
+        setHourBasedOnDate(choiceboxRoomDateInDateRR.getValue(), choiceboxRoomDateInHourRR, choiceboxRoomDateInHourRR.getValue());
+    }
+    public void showHourForDateOut(ActionEvent actionEvent) {
+        setHourBasedOnDate(choiceboxRoomDateOutDateRR.getValue(), choiceboxRoomDateOutHourRR, choiceboxRoomDateOutHourRR.getValue());
+    }
+    public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
+        setMinuteBasedOnHour(choiceboxRoomDateInHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateInMinuteRR, choiceboxRoomDateInMinuteRR.getValue());
+        setMinuteBasedOnHour(choiceboxRoomDateOutHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateOutMinuteRR, choiceboxRoomDateOutMinuteRR.getValue());
+        setInfoForOldCustomer();
+        reloadRoomAvailabilityClicked();
+    }
 }
