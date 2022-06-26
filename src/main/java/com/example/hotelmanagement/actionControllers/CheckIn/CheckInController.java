@@ -5,6 +5,7 @@ import com.example.hotelmanagement.Main;
 import com.example.hotelmanagement.Objects.RoomInformation;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -33,49 +35,15 @@ public class CheckInController implements Initializable {
     @FXML
     private TextField changes;
 
-    @FXML
-    private ChoiceBox<?> choiceboxAdultsRI;
 
     @FXML
     private ChoiceBox<String> choiceboxAdultsRR;
     private String[] adultsRR = {"1", "2", "3", "4", "5", "6", "7"};
 
-    @FXML
-    private ChoiceBox<?> choiceboxChildrensRI;
 
     @FXML
     private ChoiceBox<String> choiceboxChildrensRR;
     private String[] childrensRR = {"0", "1", "2", "3", "4", "5", "6", "7"};
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateInDateRI;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateInDateRR;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateInTimeRI;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateInTimeRR;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateOutDateRI;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateOutDateRR;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateOutTimeRI;
-
-    @FXML
-    private ChoiceBox<?> choiceboxDateOutTimeRR;
-
-    @FXML
-    private ChoiceBox<?> choiceboxRoomNumberRI;
-
-    @FXML
-    private ChoiceBox<?> choiceboxRoomTypeRI;
 
     @FXML
     private ChoiceBox<String> choiceboxRoomTypeRR;
@@ -157,10 +125,23 @@ public class CheckInController implements Initializable {
     @FXML
     private ChoiceBox<Integer> choiceboxRoomDateOutMinuteRR;
 
-    private Integer[] dateInHourArray;
-    private Integer[] dateInMinuteArray;
-    private Integer[] dateOutHourArray;
-    private Integer[] dateOutMinuteArray;
+
+    @FXML
+    private TextField choiceboxRoomNumberRI;
+    @FXML
+    private TextField choiceboxDateInDateRI;
+    @FXML
+    private TextField choiceboxDateInTimeRI;
+    @FXML
+    private TextField choiceboxDateOutDateRI;
+    @FXML
+    private TextField choiceboxDateOutTimeRI;
+    @FXML
+    private TextField choiceboxAdultsRI;
+    @FXML
+    private TextField choiceboxChildrensRI;
+    @FXML
+    private TextField choiceboxRoomTypeRI;
 
 
     public void reloadTotalPageClicked() {
@@ -389,10 +370,27 @@ public class CheckInController implements Initializable {
     public void showHourForDateOut(ActionEvent actionEvent) {
         setHourBasedOnDate(choiceboxRoomDateOutDateRR.getValue(), choiceboxRoomDateOutHourRR, choiceboxRoomDateOutHourRR.getValue());
     }
+
+    public void roomSelected(MouseEvent mouseEvent) {
+        TableView tableView = (TableView) mouseEvent.getSource();
+        ObservableList<RoomInformation> roomSelected = tableView.getSelectionModel().getSelectedItems();
+        if (mouseEvent.getClickCount() == 2) {
+            showRoomInformation(roomSelected.get(0).getRoom_ID());
+        }
+    }
+    private void showRoomInformation(Integer roomID) {
+        for (RoomInformation object : Main.getRoomData()) {
+            if (object.getRoom_ID() == roomID) {
+                choiceboxRoomNumberRI.setText(String.valueOf(object.getRoom_number()));
+                choiceboxRoomNumberRI.setEditable(false);
+            }
+        }
+    }
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
         setMinuteBasedOnHour(choiceboxRoomDateInHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateInMinuteRR, choiceboxRoomDateInMinuteRR.getValue());
         setMinuteBasedOnHour(choiceboxRoomDateOutHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateOutMinuteRR, choiceboxRoomDateOutMinuteRR.getValue());
         setInfoForOldCustomer();
         reloadRoomAvailabilityClicked();
     }
+
 }

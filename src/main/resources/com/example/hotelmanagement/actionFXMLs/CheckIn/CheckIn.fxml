@@ -12,11 +12,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="930.0" prefWidth="1600.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
    <children>
-      <HBox alignment="CENTER" layoutX="500.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+      <HBox alignment="CENTER" layoutX="270.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
             <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -30,135 +31,108 @@
             </ImageView>
          </children>
       </HBox>
-      <Line endX="1485.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
+      <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
       <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
       <Line endX="1104.0" layoutX="46.0" layoutY="100.0" stroke="#4a274f" />
-      <TextField fx:id="userFirstName" layoutX="196.0" layoutY="155.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userLastName" layoutX="196.0" layoutY="181.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userSSN" layoutX="196.0" layoutY="207.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userHouseNumber" layoutX="196.0" layoutY="233.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userDistrict" layoutX="196.0" layoutY="259.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userState" layoutX="196.0" layoutY="285.0" prefHeight="26.0" prefWidth="270.0" />
-      <TextField fx:id="userGender" layoutX="196.0" layoutY="311.0" prefHeight="26.0" prefWidth="93.0" />
-      <TextField fx:id="userPhoneNumber" layoutX="196.0" layoutY="337.0" prefHeight="26.0" prefWidth="270.0" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSN:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="House Number:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="District:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" />
-      <Text fill="#4a274f" layoutX="95.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" />
-      <Line endX="-62.5" endY="3.5" layoutX="134.0" layoutY="133.0" startX="-62.585784912109375" startY="244.32843017578125" stroke="#4a274f" />
-      <Line endX="306.5" endY="0.82843017578125" layoutX="172.0" layoutY="377.0" startX="-100.08578491210938" startY="0.82843017578125" stroke="#4a274f" />
-      <Line endX="-122.0" endY="-197.0" layoutX="601.0" layoutY="334.0" startX="-122.0" startY="43.32843017578125" stroke="#4a274f" />
-      <Text fill="#4a274f" layoutX="112.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" />
-      <Line endX="33.5" endY="2.0" layoutX="72.0" layoutY="134.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
-      <Line endX="-147.5" endY="-4.5" layoutX="303.0" layoutY="141.0" startX="175.5" startY="-4.5" stroke="#4a274f" />
+      <TextField fx:id="userFirstName" layoutX="134.0" layoutY="154.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userLastName" layoutX="134.0" layoutY="180.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userSSN" layoutX="134.0" layoutY="206.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userHouseNumber" layoutX="134.0" layoutY="232.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userDistrict" layoutX="134.0" layoutY="258.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userState" layoutX="134.0" layoutY="284.0" prefHeight="26.0" prefWidth="270.0" />
+      <TextField fx:id="userGender" layoutX="134.0" layoutY="310.0" prefHeight="26.0" prefWidth="93.0" />
+      <TextField fx:id="userPhoneNumber" layoutX="134.0" layoutY="336.0" prefHeight="26.0" prefWidth="270.0" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SSN:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="House Number:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="District:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" />
+      <Text fill="#4a274f" layoutX="33.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number:" />
+      <Text fill="#4a274f" layoutX="110.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font></Text>
       <Circle fill="#4a274f" layoutX="163.0" layoutY="137.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
       <Circle fill="#4a274f" layoutX="196.0" layoutY="137.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
       <Circle fill="#4a274f" layoutX="229.0" layoutY="137.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
-      <Text fill="#4a274f" layoutX="610.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
-      <Text fill="#4a274f" layoutX="610.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
-      <Text fill="#4a274f" layoutX="610.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
-      <Text fill="#4a274f" layoutX="610.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
-      <Text fill="#4a274f" layoutX="843.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
-      <Text fill="#4a274f" layoutX="643.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Request" />
-      <Line endX="33.5" endY="2.0" layoutX="600.0" layoutY="131.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
-      <Line endX="-62.5" endY="3.5" layoutX="661.0" layoutY="129.0" startX="-61.20709228515625" startY="133.20709228515625" stroke="#4a274f" />
-      <Line endX="325.5" endY="2.5" layoutX="698.0" layoutY="259.0" startX="-97.5" startY="2.5" stroke="#4a274f" />
-      <Line endX="-147.5" endY="-4.5" layoutX="889.0" layoutY="140.0" startX="134.5" startY="-4.5" stroke="#4a274f" />
-      <Circle fill="#4a274f" layoutX="749.0" layoutY="136.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
-      <Line endX="-122.0" endY="-195.0" layoutX="1145.0" layoutY="331.0" startX="-122.0" startY="-70.0" stroke="#4a274f" />
-      <ChoiceBox fx:id="choiceboxRoomTypeRR" layoutX="713.0" layoutY="150.0" prefWidth="150.0">
+      <Text fill="#4a274f" layoutX="421.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
+      <Text fill="#4a274f" layoutX="421.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
+      <Text fill="#4a274f" layoutX="421.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
+      <Text fill="#4a274f" layoutX="421.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
+      <Text fill="#4a274f" layoutX="420.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
+      <Text fill="#4a274f" layoutX="461.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Request">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font></Text>
+      <Circle fill="#4a274f" layoutX="566.0" layoutY="137.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
+      <ChoiceBox fx:id="choiceboxRoomTypeRR" layoutX="524.0" layoutY="155.0" prefWidth="150.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ChoiceBox>
-      <DatePicker fx:id="choiceboxRoomDateInDateRR" layoutX="713.0" layoutY="176.0" onAction="#showHourForDateIn" prefHeight="25.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="choiceboxRoomDateInHourRR" layoutX="861.0" layoutY="176.0" prefHeight="25.0" prefWidth="78.0" />
-      <ChoiceBox fx:id="choiceboxRoomDateInMinuteRR" layoutX="936.0" layoutY="176.0" prefHeight="25.0" prefWidth="78.0" />
-      <DatePicker fx:id="choiceboxRoomDateOutDateRR" layoutX="713.0" layoutY="202.0" onAction="#showHourForDateOut" prefHeight="25.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="choiceboxRoomDateOutHourRR" layoutX="861.0" layoutY="202.0" prefHeight="25.0" prefWidth="78.0" />
-      <ChoiceBox fx:id="choiceboxRoomDateOutMinuteRR" layoutX="936.0" layoutY="202.0" prefHeight="25.0" prefWidth="78.0" />
-      <ChoiceBox fx:id="choiceboxAdultsRR" layoutX="713.0" layoutY="227.0" prefHeight="26.0" prefWidth="55.0">
+      <DatePicker fx:id="choiceboxRoomDateInDateRR" layoutX="524.0" layoutY="181.0" onAction="#showHourForDateIn" prefHeight="25.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choiceboxRoomDateInHourRR" layoutX="672.0" layoutY="181.0" prefHeight="25.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="choiceboxRoomDateInMinuteRR" layoutX="747.0" layoutY="181.0" prefHeight="25.0" prefWidth="78.0" />
+      <DatePicker fx:id="choiceboxRoomDateOutDateRR" layoutX="524.0" layoutY="207.0" onAction="#showHourForDateOut" prefHeight="25.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="choiceboxRoomDateOutHourRR" layoutX="672.0" layoutY="207.0" prefHeight="25.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="choiceboxRoomDateOutMinuteRR" layoutX="747.0" layoutY="207.0" prefHeight="25.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="choiceboxAdultsRR" layoutX="524.0" layoutY="232.0" prefHeight="26.0" prefWidth="55.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxChildrensRR" layoutX="958.0" layoutY="227.0" prefHeight="26.0" prefWidth="55.0">
+      <ChoiceBox fx:id="choiceboxChildrensRR" layoutX="524.0" layoutY="258.0" prefHeight="26.0" prefWidth="55.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ChoiceBox>
-      <Text fill="#4a274f" layoutX="112.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Availability" />
-      <Line endX="33.5" endY="2.0" layoutX="72.0" layoutY="417.0" startX="-1.0" startY="2.0" stroke="#4a274f" />
-      <Line endX="-62.5" endY="3.5" layoutX="134.0" layoutY="416.0" startX="-62.5" startY="473.32843017578125" stroke="#4a274f" />
-      <TableView fx:id="roomAvailabilityT" layoutX="82.0" layoutY="438.0" prefHeight="440.0" prefWidth="694.0">
+      <Text fill="#4a274f" layoutX="110.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Availability" />
+      <TableView fx:id="roomAvailabilityT" layoutX="33.0" layoutY="416.0" onMouseClicked="#roomSelected" prefHeight="450.0" prefWidth="793.0">
         <columns>
             <TableColumn fx:id="roomNumberTC" prefWidth="98.0" text="Room Number" />
           <TableColumn fx:id="roomQualityTC" prefWidth="85.0" text="Room Quality" />
           <TableColumn fx:id="roomTypeTC" prefWidth="95.0" text="Room Type" />
             <TableColumn fx:id="roomChargesTC" prefWidth="122.0" text="Room Charges" />
-            <TableColumn fx:id="roomCommentsTC" prefWidth="293.0" text="Comments" />
+            <TableColumn fx:id="roomCommentsTC" prefWidth="376.0" text="Comments" />
         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </TableView>
-      <Line endX="-147.5" endY="-2.5" layoutX="374.0" layoutY="424.0" startX="414.5" startY="-2.5" stroke="#4a274f" />
-      <Circle fill="#4a274f" layoutX="234.0" layoutY="422.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
-      <Line endX="590.5" endY="0.82843017578125" layoutX="198.0" layoutY="888.0" startX="-126.0" startY="0.82843017578125" stroke="#4a274f" />
-      <Line endX="-122.0" endY="-226.0" layoutX="910.0" layoutY="648.0" startX="-122.0" startY="240.32843017578125" stroke="#4a274f" />
-      <Text layoutX="902.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Information" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room No." />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Charges:" />
-      <ChoiceBox fx:id="choiceboxRoomNumberRI" layoutX="920.0" layoutY="373.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxDateInDateRI" layoutX="920.0" layoutY="399.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxDateInTimeRI" layoutX="1070.0" layoutY="399.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxDateOutDateRI" layoutX="920.0" layoutY="425.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxDateOutTimeRI" layoutX="1070.0" layoutY="425.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <ChoiceBox fx:id="choiceboxAdultsRI" layoutX="920.0" layoutY="450.0" prefHeight="26.0" prefWidth="55.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <Text fill="#4a274f" layoutX="1050.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
-      <ChoiceBox fx:id="choiceboxChildrensRI" layoutX="1165.0" layoutY="450.0" prefHeight="26.0" prefWidth="55.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <TextField fx:id="roomCharges" layoutX="986.0" layoutY="502.0" prefHeight="26.0" prefWidth="121.0" />
-      <ChoiceBox fx:id="choiceboxRoomTypeRI" layoutX="986.0" layoutY="476.0" prefWidth="150.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></ChoiceBox>
-      <Text fill="#4a274f" layoutX="850.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Charges:" />
-      <TextField fx:id="serviceCharges" layoutX="986.0" layoutY="528.0" prefHeight="26.0" prefWidth="121.0" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:" />
-      <TextField fx:id="discountPercent" layoutX="926.0" layoutY="554.0" prefHeight="26.0" prefWidth="90.0" />
-      <Text layoutX="1024.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
-      <TextField layoutX="1055.0" layoutY="555.0" prefHeight="26.0" prefWidth="166.0" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changes:" />
-      <TextField fx:id="changes" layoutX="925.0" layoutY="580.0" prefHeight="26.0" prefWidth="121.0" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="654.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grand Total:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="706.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
-      <TextField fx:id="grandTotal" layoutX="935.0" layoutY="636.0" prefHeight="26.0" prefWidth="121.0" />
-      <TextField fx:id="totalPaid" layoutX="935.0" layoutY="662.0" prefHeight="26.0" prefWidth="121.0" />
-      <TextField fx:id="balance" layoutX="935.0" layoutY="688.0" prefHeight="26.0" prefWidth="121.0" />
+      <Circle fill="#4a274f" layoutX="248.0" layoutY="397.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Text fill="#4a274f" layoutX="902.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Information">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font></Text>
+      <Text fill="#4a274f" layoutX="850.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room No." />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date In:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adults:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Type:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Charges:" />
+      <TextField fx:id="choiceboxRoomNumberRI" layoutX="921.0" layoutY="155.0" />
+      <TextField fx:id="choiceboxDateInDateRI" layoutX="921.0" layoutY="181.0" />
+      <TextField fx:id="choiceboxDateInTimeRI" layoutX="1071.0" layoutY="181.0" />
+      <TextField fx:id="choiceboxDateOutDateRI" layoutX="921.0" layoutY="207.0" />
+      <TextField fx:id="choiceboxDateOutTimeRI" layoutX="1071.0" layoutY="207.0" />
+      <TextField fx:id="choiceboxAdultsRI" layoutX="921.0" layoutY="233.0" prefHeight="25.0" prefWidth="55.0" />
+      <Text fill="#4a274f" layoutX="1050.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Childrens:" />
+      <TextField fx:id="choiceboxChildrensRI" layoutX="1165.0" layoutY="233.0" prefHeight="25.0" prefWidth="55.0" />
+      <TextField fx:id="roomCharges" layoutX="986.0" layoutY="284.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField fx:id="choiceboxRoomTypeRI" layoutX="986.0" layoutY="259.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Charges:" />
+      <TextField fx:id="serviceCharges" layoutX="986.0" layoutY="310.0" prefHeight="26.0" prefWidth="121.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount:" />
+      <TextField fx:id="discountPercent" layoutX="920.0" layoutY="336.0" prefHeight="26.0" prefWidth="90.0" />
+      <Text layoutX="1024.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+      <TextField layoutX="1055.0" layoutY="336.0" prefHeight="26.0" prefWidth="166.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changes:" />
+      <TextField fx:id="changes" layoutX="920.0" layoutY="362.0" prefHeight="26.0" prefWidth="121.0" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grand Total:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
+      <TextField fx:id="grandTotal" layoutX="920.0" layoutY="406.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField fx:id="totalPaid" layoutX="920.0" layoutY="432.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField fx:id="balance" layoutX="920.0" layoutY="458.0" prefHeight="26.0" prefWidth="121.0" />
       <ImageView fx:id="reloadTotalPage" fitHeight="16.0" fitWidth="18.0" layoutX="7.0" layoutY="101.0" onMouseClicked="#reloadTotalPageClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../images/logo/reloadLogo.png" />
@@ -191,7 +165,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="customerEraseRR" fitHeight="14.0" fitWidth="14.0" layoutX="742.0" layoutY="129.0" onMouseClicked="#customerEraseTempInfoClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="customerEraseRR" fitHeight="14.0" fitWidth="14.0" layoutX="559.0" layoutY="130.0" onMouseClicked="#customerEraseTempInfoClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../images/logo/customerEraseLogo.png" />
          </image>
@@ -199,7 +173,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="reloadRoomAvailability" fitHeight="16.0" fitWidth="18.0" layoutX="226.0" layoutY="413.0" onMouseClicked="#reloadRoomAvailabilityClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="reloadRoomAvailability" fitHeight="16.0" fitWidth="18.0" layoutX="240.0" layoutY="389.0" onMouseClicked="#reloadRoomAvailabilityClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../images/logo/reloadLogo.png" />
          </image>
@@ -207,16 +181,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Line endX="-90.5" endY="-4.5" layoutX="336.0" layoutY="136.0" startX="196.5" startY="-4.5" stroke="#4a274f" />
-      <Line endX="-122.0" endY="-197.0" layoutX="655.0" layoutY="330.0" startX="-122.0" startY="54.32843017578125" stroke="#4a274f" />
-      <Line endX="305.5" endY="0.82843017578125" layoutX="228.0" layoutY="383.0" startX="-166.0" startY="0.82843017578125" stroke="#4a274f" />
-      <Line endX="-62.5" endY="2.5" layoutX="125.0" layoutY="129.0" startX="-62.5" startY="255.32843017578125" stroke="#4a274f" />
-      <Line endX="22.5" endY="2.0" layoutX="72.0" layoutY="129.0" startX="-10.0" startY="2.0" stroke="#4a274f" />
-      <Line endX="321.5" endY="0.82843017578125" layoutX="755.0" layoutY="271.0" startX="-166.0" startY="0.82843017578125" stroke="#4a274f" />
-      <Line endX="-62.5" endY="0.5" layoutX="651.0" layoutY="128.0" startX="-62.5" startY="144.32843017578125" stroke="#4a274f" />
-      <Line endX="22.5" endY="2.0" layoutX="604.0" layoutY="127.0" startX="-16.0" startY="2.0" stroke="#4a274f" />
-      <Line endX="-122.0" endY="-212.0" layoutX="1199.0" layoutY="342.0" startX="-122.0" startY="-69.67156982421875" stroke="#4a274f" />
-      <Line endX="-126.5" endY="-4.5" layoutX="895.0" layoutY="135.0" startX="182.5" startY="-4.5" stroke="#4a274f" />
+      <Line endX="780.0" endY="767.5" layoutX="56.0" layoutY="110.0" startX="780.0" stroke="#a97db2" />
+      <Line endX="1116.5" layoutX="114.0" layoutY="878.0" startX="-115.0" stroke="#4a274f" />
+      <Line endX="828.5" layoutX="7.0" layoutY="375.0" startX="-7.0" stroke="#a97db2" />
+      <Line endX="357.0" endY="-0.5" layoutX="56.0" layoutY="110.0" startX="357.0" startY="264.5" stroke="#a97db2" />
+      <Line endX="-125.0" endY="770.0" layoutX="125.0" layoutY="120.0" startX="-125.0" startY="-120.0" stroke="#4a274f" />
+      <Line endX="1105.0" endY="-120.0" layoutX="125.0" layoutY="120.0" startX="1105.0" startY="770.0" stroke="#4a274f" />
+      <Line endX="1123.5" endY="0.5" layoutX="107.0" layoutY="890.0" startX="-107.0" stroke="#4a274f" />
+      <Line endX="1104.5" endY="-120.5" layoutX="125.0" layoutY="120.0" startX="-124.5" startY="-120.5" stroke="#4a274f" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
