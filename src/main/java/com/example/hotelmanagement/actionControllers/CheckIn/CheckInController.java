@@ -142,6 +142,11 @@ public class CheckInController implements Initializable {
     private TextField choiceboxChildrensRI;
     @FXML
     private TextField choiceboxRoomTypeRI;
+    @FXML
+    private TextField discountPercentConverted;
+
+    private int roomID;
+
 
 
     public void reloadTotalPageClicked() {
@@ -199,8 +204,11 @@ public class CheckInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceboxRoomTypeRR.getItems().addAll(roomType);
+        choiceboxRoomTypeRR.setValue(roomType[0]);
         choiceboxAdultsRR.getItems().addAll(adultsRR);
+        choiceboxAdultsRR.setValue(adultsRR[0]);
         choiceboxChildrensRR.getItems().addAll(childrensRR);
+        choiceboxChildrensRR.setValue(childrensRR[0]);
         Main.loadRoomData(null);
         displayRoomAvailability();
         DateTimeInitializer(choiceboxRoomDateInDateRR, choiceboxRoomDateInHourRR, choiceboxRoomDateInMinuteRR);
@@ -346,19 +354,22 @@ public class CheckInController implements Initializable {
     private void setMinuteBasedOnHour(Integer hour, ChoiceBox<Integer> forMinute, Integer value) {
         forMinute.getItems().clear();
         if (LocalTime.now().getHour() == hour) {
-            Integer[] forMinuteArray = new Integer[(60 - LocalTime.now().getMinute())];
+            Integer[] forMinuteArray = new Integer[(60 - LocalTime.now().getMinute()) / 15];
             int arrayIndex = 0;
             for (int i = LocalTime.now().getMinute(); i < 60; i++) {
-                forMinuteArray[arrayIndex] = i;
-                arrayIndex++;
+                if ((i % 15 == 0)) {
+                    forMinuteArray[arrayIndex] = i;
+                    arrayIndex++;
+                }
             }
             forMinute.getItems().addAll(forMinuteArray);
         }
         else {
-            Integer[] forMinuteArray = new Integer[60];
-            for (int i = 0; i < 60; i++) {
-                forMinuteArray[i] = i;
-            }
+            Integer[] forMinuteArray = new Integer[4];
+            forMinuteArray[0] = 0;
+            forMinuteArray[1] = 15;
+            forMinuteArray[2] = 30;
+            forMinuteArray[3] = 45;
             forMinute.getItems().addAll(forMinuteArray);
         }
         forMinute.setValue(value);
@@ -379,10 +390,36 @@ public class CheckInController implements Initializable {
         }
     }
     private void showRoomInformation(Integer roomID) {
+        discountPercent.setText("10");
         for (RoomInformation object : Main.getRoomData()) {
             if (object.getRoom_ID() == roomID) {
                 choiceboxRoomNumberRI.setText(String.valueOf(object.getRoom_number()));
+                choiceboxDateInDateRI.setText(String.valueOf(choiceboxRoomDateInDateRR.getValue()));
+                choiceboxDateInTimeRI.setText(choiceboxRoomDateInHourRR.getValue() + ": " + choiceboxRoomDateInMinuteRR.getValue());
+                choiceboxDateOutDateRI.setText(String.valueOf(choiceboxRoomDateOutDateRR.getValue()));
+                choiceboxDateOutTimeRI.setText(choiceboxRoomDateOutHourRR.getValue() + ": " + choiceboxRoomDateOutMinuteRR.getValue());
+                choiceboxAdultsRI.setText(String.valueOf(choiceboxAdultsRR.getValue()));
+                choiceboxChildrensRI.setText(String.valueOf(choiceboxChildrensRR.getValue()));
+                choiceboxRoomTypeRI.setText(object.getRoom_type());
+                roomCharges.setText(String.valueOf(object.getRoom_price()));
                 choiceboxRoomNumberRI.setEditable(false);
+                choiceboxDateInDateRI.setEditable(false);
+                choiceboxDateInTimeRI.setEditable(false);
+                choiceboxDateOutDateRI.setEditable(false);
+                choiceboxDateOutTimeRI.setEditable(false);
+                choiceboxAdultsRI.setEditable(false);
+                choiceboxChildrensRI.setEditable(false);
+                choiceboxRoomTypeRI.setEditable(false);
+                roomCharges.setEditable(false);
+                roomID = object.getRoom_ID();
+                double discount = Double.parseDouble(discountPercent.getText()) * object.getRoom_price() / 100;
+                discountPercentConverted.setText(String.valueOf(discount));
+                discountPercentConverted.setEditable(false);
+                serviceCharges.setText("0");
+                changes.setText("0");
+                grandTotal.setText(String.valueOf(object.getRoom_price() - discount));
+                totalPaid.setText("0");
+                balance.setText(grandTotal.getText());
             }
         }
     }
@@ -393,4 +430,10 @@ public class CheckInController implements Initializable {
         reloadRoomAvailabilityClicked();
     }
 
+    public void keyPressed() {
+        double discount = Double.parseDouble(discountPercent.getText()) * Double.parseDouble(roomCharges.getText()) / 100;
+        discountPercentConverted.setText(String.valueOf(discount));
+        grandTotal.setText(String.valueOf(Double.parseDouble(roomCharges.getText()) - Double.parseDouble(discountPercentConverted.getText())));
+        balance.setText(grandTotal.getText());
+    }
 }
