@@ -206,10 +206,17 @@
       </HBox>
       <TableView fx:id="paidList" layoutX="849.0" layoutY="502.0" prefHeight="235.0" prefWidth="371.0">
         <columns>
-          <TableColumn fx:id="paymentID" prefWidth="75.0" text="Payment ID" />
-          <TableColumn fx:id="amount" prefWidth="93.0" text="Amount" />
+          <TableColumn fx:id="paymentID" prefWidth="130.0" text="Payment ID">
+               <graphic>
+                  <Button mnemonicParsing="false" text="New">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </graphic></TableColumn>
+          <TableColumn fx:id="amount" prefWidth="70.0" text="Amount" />
             <TableColumn fx:id="date" prefWidth="103.0" text="Date" />
-            <TableColumn fx:id="signature" prefWidth="99.0" text="Signature" />
+            <TableColumn fx:id="signature" prefWidth="67.0" text="Signature" />
         </columns>
       </TableView>
    </children>

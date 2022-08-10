@@ -2,9 +2,11 @@ package com.example.hotelmanagement.actionControllers.CheckIn;
 
 import com.example.hotelmanagement.DatabaseConnection;
 import com.example.hotelmanagement.Main;
+import com.example.hotelmanagement.Objects.PaymentInformation;
 import com.example.hotelmanagement.Objects.RoomInformation;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +25,10 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CheckInController implements Initializable {
@@ -125,6 +129,18 @@ public class CheckInController implements Initializable {
     @FXML
     private ChoiceBox<Integer> choiceboxRoomDateOutMinuteRR;
 
+    @FXML
+    private TableView<PaymentInformation> paidList;
+    @FXML
+    private TableColumn<PaymentInformation, Integer> paymentID;
+    @FXML
+    private TableColumn<PaymentInformation, Double> amount;
+    @FXML
+    private TableColumn<PaymentInformation, Date> date;
+    @FXML
+    private TableColumn<PaymentInformation, Integer> signature;
+
+
 
     @FXML
     private TextField choiceboxRoomNumberRI;
@@ -145,7 +161,6 @@ public class CheckInController implements Initializable {
     @FXML
     private TextField discountPercentConverted;
 
-    private int roomID;
 
 
 
@@ -387,6 +402,12 @@ public class CheckInController implements Initializable {
         ObservableList<RoomInformation> roomSelected = tableView.getSelectionModel().getSelectedItems();
         if (mouseEvent.getClickCount() == 2) {
             showRoomInformation(roomSelected.get(0).getRoom_ID());
+            loadPaymentHistory(roomSelected.get(0).getRoom_ID());
+            paymentID.setCellValueFactory(new PropertyValueFactory<>("payment_ID"));
+            amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            date.setCellValueFactory(new PropertyValueFactory<>("payment_date"));
+            signature.setCellValueFactory(new PropertyValueFactory<>("customer_ID"));
+            paidList.setItems(getPaymentDataObjectList());
         }
     }
     private void showRoomInformation(Integer roomID) {
@@ -436,4 +457,48 @@ public class CheckInController implements Initializable {
         grandTotal.setText(String.valueOf(Double.parseDouble(roomCharges.getText()) - Double.parseDouble(discountPercentConverted.getText())));
         balance.setText(grandTotal.getText());
     }
+
+    private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
+    public void loadPaymentHistory(Integer roomID) {
+        if (paymentDataObjectList != null) {
+            paymentDataObjectList.clear();
+        }
+        int currentCheckerID = Main.getIDcurrentGuest();
+        int hourIn = choiceboxRoomDateInHourRR.getValue();
+        int minuteIn = choiceboxRoomDateInMinuteRR.getValue();
+        int hourOut = choiceboxRoomDateOutHourRR.getValue();
+        int minuteOut = choiceboxRoomDateOutMinuteRR.getValue();
+        LocalDate dateIn = choiceboxRoomDateInDateRR.getValue();
+        LocalDate dateOut = choiceboxRoomDateOutDateRR.getValue();
+
+        String timeIn = dateIn + " " + hourIn + ":" + minuteIn + ":00";
+        String timeOut = dateOut + " " + hourOut + ":" + minuteOut + ":00";
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = "SELECT p.payment_ID as payment_ID, p.customer_ID as customer_ID, r.room_ID as room_ID, r.reservation_ID as reservation_ID, p.payment_date as payment_date, p.amount as amount" +
+                " FROM Reservation r, Payment p" +
+                " WHERE r.reservation_ID = p.reservation_ID" +
+               " AND p.customer_ID = " + currentCheckerID + " " +
+                " AND r.room_ID = " + roomID + " ";
+//                "AND r.date_in = " + timeIn + " " +
+//                "AND r.date_out = " + timeOut +"";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet outputQuery = statement.executeQuery(connectQuery);
+
+            while (outputQuery.next()) {
+                paymentDataObjectList.add(new PaymentInformation(outputQuery.getInt("payment_ID"),
+                        outputQuery.getInt("customer_ID"),
+                        outputQuery.getDate("payment_date"),
+                        outputQuery.getInt("reservation_ID"), outputQuery.getDouble("amount")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static ObservableList<PaymentInformation> getPaymentDataObjectList() {
+        return paymentDataObjectList;
+    }
+
 }
