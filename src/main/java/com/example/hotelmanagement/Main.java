@@ -78,15 +78,54 @@ public class Main extends Application {
         }
         String roomTypeQuery = "";
         if (!Objects.equals(roomType, null)) {
-            roomTypeQuery = " AND rc.name = " + "'"+ roomType + "'";
+            roomTypeQuery = " AND rc.class_name = " + "'"+ roomType + "'";
         }
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String connectQuery = "SELECT r.room_ID as room_ID, r.roomNumber as room_number, rq.quality as room_quality, rc.name as room_type, (rc.price * rq.priceMultiply) as room_price, rc.description as comments" +
+        String connectQuery = "SELECT r.room_ID as room_ID, r.roomNumber as room_number, rq.quality as room_quality, rc.class_name as room_type, (rc.class_price * rq.priceMultiply) as room_price, rc.class_description as comments" +
                 " FROM Room r, RoomQuality rq, RoomClass rc" +
                 " WHERE r.roomQuality = rq.roomQuality_ID" +
                 " AND rc.class_ID = r.class_ID" + roomTypeQuery +
                 " ORDER BY r.room_ID";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()) {
+                roomDataObjectList.add(new RoomInformation(queryOutput.getInt("room_ID"),
+                        queryOutput.getInt("room_number"),
+                        queryOutput.getString("room_quality"),
+                        queryOutput.getString("room_type"),
+                        queryOutput.getString("comments"), queryOutput.getDouble("room_price")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadSpecificSelectedRoom(String roomType, String timeIn, String timeOut) {
+        if (roomDataObjectList != null) {
+            roomDataObjectList.clear();
+        }
+        String roomTypeQuery = "";
+        if (!Objects.equals(roomType, null)) {
+            roomTypeQuery = " AND rc.class_name = " + "'"+ roomType + "'";
+        }
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = "SELECT T.room_ID as room_ID, T.roomNumber as room_number, rq.quality as room_quality, rc.class_name as room_type, (rc.class_price * rq.priceMultiply) as room_price, rc.class_description as comments\n" +
+                "FROM RoomQuality rq, RoomClass rc, (Select Room.room_ID, Room.roomNumber, Room.roomQuality, Room.class_ID\n" +
+                "FROM Room\n" +
+                "WHERE room_ID NOT IN (Select Room.room_ID FROM room\n" +
+                "inner JOIN Reservation\n" +
+                "ON Room.room_ID = Reservation.room_ID\n" +
+                "WHERE Reservation.date_in BETWEEN '"+ timeIn + "' AND '"+ timeOut + "'\n" +
+                "or Reservation.date_out BETWEEN '"+ timeIn + "' AND '"+ timeOut + "'\n" +
+                "or '"+ timeIn + "' BETWEEN Reservation.date_in AND Reservation.date_out\n" +
+                "or '"+ timeOut + "' BETWEEN Reservation.date_in AND Reservation.date_out)) as T\n" +
+                "WHERE T.roomQuality = rq.roomQuality_ID\n" + roomTypeQuery +
+                "AND rc.class_ID = T.class_ID\n" +
+                "ORDER BY T.room_ID";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);

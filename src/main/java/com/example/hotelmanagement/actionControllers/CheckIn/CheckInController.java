@@ -210,7 +210,17 @@ public class CheckInController implements Initializable {
         if (roomType == "All Type") {
             roomType = null;
         }
-        Main.loadRoomData(roomType);
+        int currentCheckerID = Main.getIDcurrentGuest();
+        int hourIn = choiceboxRoomDateInHourRR.getValue();
+        int minuteIn = choiceboxRoomDateInMinuteRR.getValue();
+        int hourOut = choiceboxRoomDateOutHourRR.getValue();
+        int minuteOut = choiceboxRoomDateOutMinuteRR.getValue();
+        LocalDate dateIn = choiceboxRoomDateInDateRR.getValue();
+        LocalDate dateOut = choiceboxRoomDateOutDateRR.getValue();
+
+        String timeIn = dateIn + " " + hourIn + ":" + minuteIn + ":00";
+        String timeOut = dateOut + " " + hourOut + ":" + minuteOut + ":00";
+        Main.loadSpecificSelectedRoom(roomType, timeIn, timeOut);
         displayRoomAvailability();
         rollingAnimation(reloadRoomAvailability);
     }

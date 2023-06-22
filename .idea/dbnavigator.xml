@@ -28,22 +28,18 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="66816961-eb0d-429f-ada7-5e7809ef996b">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
+    <connection id="6724c008-4854-46a9-a516-dc3d6990c74b">
+      <console name="Connection 3" type="STANDARD" schema="hotelmanagement" session="Main" />
     </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="66816961-eb0d-429f-ada7-5e7809ef996b" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.employees" active-filter-id="" />
-    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.customer" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.roomclass" active-filter-id="" />
-    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.reports" active-filter-id="" />
-    <filter-actions connection-id="66816961-eb0d-429f-ada7-5e7809ef996b" dataset="hotel.room" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -74,23 +70,23 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="66816961-eb0d-429f-ada7-5e7809ef996b" active="true" signed="true">
+      <connection id="6724c008-4854-46a9-a516-dc3d6990c74b" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="Connection 3" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="8.0" />
+          <database-version value="9999.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />
-          <database value="mysql" />
+          <database value="hotelmanagement" />
           <type value="USER_PASSWORD" />
           <user value="root" />
-          <deprecated-pwd value="Q2hpY29ubnVvY21hdDFA" />
+          <deprecated-pwd value="U2FucGhhbWFnZTE5IQ==" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -120,7 +116,7 @@
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
-          <connectivity-timeout value="5" />
+          <connectivity-timeout value="10" />
           <idle-time-to-disconnect value="30" />
           <idle-time-to-disconnect-pool value="5" />
           <credential-expiry-time value="10" />
@@ -199,6 +195,7 @@
         <object-type name="FUNCTION" sorting-type="NAME" />
         <object-type name="PROCEDURE" sorting-type="NAME" />
         <object-type name="ARGUMENT" sorting-type="POSITION" />
+        <object-type name="TYPE ATTRIBUTE" sorting-type="POSITION" />
       </sorting>
       <default-editors>
         <object-type name="VIEW" editor-type="SELECTION" />
@@ -245,11 +242,11 @@
         <nulls-first value="true" />
         <max-sorting-columns value="4" />
       </sorting>
-      <tracking-columns>
-        <columnNames value="" />
+      <audit-columns>
+        <column-names value="" />
         <visible value="true" />
         <editable value="false" />
-      </tracking-columns>
+      </audit-columns>
     </dataset-grid-settings>
     <dataset-editor-settings>
       <text-editor-popup>
