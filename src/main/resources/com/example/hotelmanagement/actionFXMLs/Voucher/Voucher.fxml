@@ -14,12 +14,12 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
+                        <Image url="@../../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="200.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/actionLogo/VOUCHER.png" />
+                        <Image url="@../../../../../images/actionLogo/VOUCHER.png" />
                      </image>
                   </ImageView>
                </children>
