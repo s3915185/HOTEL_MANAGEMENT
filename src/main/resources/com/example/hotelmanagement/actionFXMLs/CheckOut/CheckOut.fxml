@@ -14,12 +14,12 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
+                        <Image url="@../../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/actionLogo/CHECK-OUT.png" />
+                        <Image url="@../../../../../images/actionLogo/ROOM_RESERVATION.png" />
                      </image>
                   </ImageView>
                </children>
@@ -28,3 +28,4 @@
       </BorderPane>
    </children>
 </AnchorPane>
+
