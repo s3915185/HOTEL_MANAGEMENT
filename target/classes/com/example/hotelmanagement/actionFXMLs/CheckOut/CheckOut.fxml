@@ -1,31 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="880.0" prefWidth="1520.0" style="-fx-background-color: #F0A08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
+      <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
+      <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
+      <Line endX="1104.0" layoutX="46.0" layoutY="100.0" stroke="#4a274f" />
+      <Line endX="665.0" endY="767.5" layoutX="56.0" layoutY="110.0" startX="665.0" stroke="#a97db2" />
+      <Line endX="1116.5" layoutX="114.0" layoutY="878.0" startX="-115.0" stroke="#4a274f" />
+      <Line endX="-125.0" endY="770.0" layoutX="125.0" layoutY="120.0" startX="-125.0" startY="-120.0" stroke="#4a274f" />
+      <Line endX="1105.0" endY="-120.0" layoutX="125.0" layoutY="120.0" startX="1105.0" startY="770.0" stroke="#4a274f" />
+      <Line endX="1123.5" endY="0.5" layoutX="107.0" layoutY="890.0" startX="-107.0" stroke="#4a274f" />
+      <Line endX="1104.5" endY="-120.5" layoutX="125.0" layoutY="120.0" startX="-124.5" startY="-120.5" stroke="#4a274f" />
+      <VBox prefHeight="891.0" prefWidth="1230.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                <children>
                   <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../images/logoMinimal/VIVANT_MINIMAL_ORANGE_BACKGROUND.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../images/actionLogo/ROOM_RESERVATION.png" />
+                        <Image url="@../../../../../images/actionLogo/CHECK-OUT.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-         </top>
-      </BorderPane>
+            <HBox alignment="CENTER" prefHeight="806.0" prefWidth="1230.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="60.0">
+                     <children>
+                        <TextField />
+                        <DatePicker />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
+                        <Text layoutX="47.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Extra Fees:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Left:" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Search Number" />
+                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Search Check In Date" />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <TextField alignment="CENTER" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Pay Amount Left Over" />
+                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Check Out" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Line endX="441.0" endY="757.5" layoutX="66.0" layoutY="120.0" startX="441.0" startY="-10.0" stroke="#a97db2" />
    </children>
-</AnchorPane>
-
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</Pane>

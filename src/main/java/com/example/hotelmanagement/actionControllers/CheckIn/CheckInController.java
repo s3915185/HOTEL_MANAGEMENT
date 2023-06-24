@@ -228,18 +228,20 @@ public class CheckInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choiceboxRoomTypeRR.getItems().addAll(roomType);
-        choiceboxRoomTypeRR.setValue(roomType[0]);
-        choiceboxAdultsRR.getItems().addAll(adultsRR);
-        choiceboxAdultsRR.setValue(adultsRR[0]);
-        choiceboxChildrensRR.getItems().addAll(childrensRR);
-        choiceboxChildrensRR.setValue(childrensRR[0]);
-        Main.loadRoomData(null);
-        displayRoomAvailability();
-        DateTimeInitializer(choiceboxRoomDateInDateRR, choiceboxRoomDateInHourRR, choiceboxRoomDateInMinuteRR);
-        DateTimeInitializer(choiceboxRoomDateOutDateRR, choiceboxRoomDateOutHourRR, choiceboxRoomDateOutMinuteRR);
-        setHourBasedOnDate(choiceboxRoomDateInDateRR.getValue(), choiceboxRoomDateInHourRR, choiceboxRoomDateInHourRR.getValue());
-        setHourBasedOnDate(choiceboxRoomDateOutDateRR.getValue(), choiceboxRoomDateOutHourRR, choiceboxRoomDateOutHourRR.getValue());
+        if (choiceboxRoomTypeRR != null) {
+            choiceboxRoomTypeRR.getItems().addAll(roomType);
+            choiceboxRoomTypeRR.setValue(roomType[0]);
+            choiceboxAdultsRR.getItems().addAll(adultsRR);
+            choiceboxAdultsRR.setValue(adultsRR[0]);
+            choiceboxChildrensRR.getItems().addAll(childrensRR);
+            choiceboxChildrensRR.setValue(childrensRR[0]);
+            Main.loadRoomData(null);
+            displayRoomAvailability();
+            DateTimeInitializer(choiceboxRoomDateInDateRR, choiceboxRoomDateInHourRR, choiceboxRoomDateInMinuteRR);
+            DateTimeInitializer(choiceboxRoomDateOutDateRR, choiceboxRoomDateOutHourRR, choiceboxRoomDateOutMinuteRR);
+            setHourBasedOnDate(choiceboxRoomDateInDateRR.getValue(), choiceboxRoomDateInHourRR, choiceboxRoomDateInHourRR.getValue());
+            setHourBasedOnDate(choiceboxRoomDateOutDateRR.getValue(), choiceboxRoomDateOutHourRR, choiceboxRoomDateOutHourRR.getValue());
+        }
     }
 
 
@@ -455,10 +457,12 @@ public class CheckInController implements Initializable {
         }
     }
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
-        setMinuteBasedOnHour(choiceboxRoomDateInHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateInMinuteRR, choiceboxRoomDateInMinuteRR.getValue());
-        setMinuteBasedOnHour(choiceboxRoomDateOutHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateOutMinuteRR, choiceboxRoomDateOutMinuteRR.getValue());
-        setInfoForOldCustomer();
-        reloadRoomAvailabilityClicked();
+        if (choiceboxRoomDateInHourRR != null) {
+            setMinuteBasedOnHour(choiceboxRoomDateInHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateInMinuteRR, choiceboxRoomDateInMinuteRR.getValue());
+            setMinuteBasedOnHour(choiceboxRoomDateOutHourRR.getSelectionModel().getSelectedItem(), choiceboxRoomDateOutMinuteRR, choiceboxRoomDateOutMinuteRR.getValue());
+            setInfoForOldCustomer();
+            reloadRoomAvailabilityClicked();
+        }
     }
 
     public void keyPressed() {
@@ -466,6 +470,26 @@ public class CheckInController implements Initializable {
         discountPercentConverted.setText(String.valueOf(discount));
         grandTotal.setText(String.valueOf(Double.parseDouble(roomCharges.getText()) - Double.parseDouble(discountPercentConverted.getText())));
         balance.setText(grandTotal.getText());
+    }
+
+    public void addResClicked() {
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+
+            String connectQuery = "INSERT INTO Customer (custfname, custlname, SSN, housenumber, district, state, gender, phonenumber) VALUES " +
+                    "(?,?,?,?,?,?,?,?); ";
+            PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
+            preparedStatement.setInt(1, Main.getIDcurrentGuest());
+            preparedStatement.setString(2, userLastName.getText());
+            preparedStatement.setString(3, userSSN.getText());
+            preparedStatement.setString(4, userHouseNumber.getText());
+            preparedStatement.execute();
+            rollingAnimation(customerAdd);
+            Main.loadUserData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
