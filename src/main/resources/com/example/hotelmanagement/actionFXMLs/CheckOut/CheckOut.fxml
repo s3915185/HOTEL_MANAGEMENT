@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckOut.CheckOutController">
    <children>
       <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
       <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
@@ -45,8 +45,8 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="60.0">
                      <children>
-                        <TextField />
-                        <DatePicker />
+                        <TextField fx:id="checkout_inputNum" />
+                        <DatePicker fx:id="checkout_dateSelected" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Out:" />
                         <Text layoutX="47.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Extra Fees:" />
@@ -58,12 +58,11 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Search Number" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Search Check In Date" />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField alignment="CENTER" />
+                        <Button fx:id="checkout_searchInfoBtn" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#searchInfoBtnClicked" prefWidth="200.0" text="Search Information" />
+                        <TextField fx:id="checkout_dateOut" />
+                        <TextField fx:id="checkout_totalPaid" />
+                        <TextField fx:id="checkout_extraFees" />
+                        <TextField fx:id="checkout_totalLeft" alignment="CENTER" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -71,8 +70,8 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Pay Amount Left Over" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Check Out" />
+                        <Button fx:id="checkout_payLeftOverBtn" alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Pay Amount Left Over" />
+                        <Button fx:id="checkout_checkOutBtn" alignment="CENTER" mnemonicParsing="false" prefWidth="200.0" text="Check Out" />
                      </children>
                   </VBox>
                </children>
