@@ -46,6 +46,7 @@ public class CheckOutController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Main.loadRoomReservation();
         for (RoomReservationInformation roomReservationInformation : Main.getRoomReservationData()) {
             System.out.println(roomReservationInformation.toString());
         }
@@ -58,7 +59,7 @@ public class CheckOutController implements Initializable {
             int userID = -1;
             boolean reservationFound = false;
             for (UserInformation user : Main.getUserData()) {
-                if (user.getPhonenumber() == checkout_inputNum.getText().toString()) {
+                if (user.getPhonenumber().equals(checkout_inputNum.getText().toString())) {
                     userFound = true;
                     userID = user.getCust_ID();
                     break;

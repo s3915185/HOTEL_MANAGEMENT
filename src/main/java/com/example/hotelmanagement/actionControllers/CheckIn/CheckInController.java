@@ -477,17 +477,37 @@ public class CheckInController implements Initializable {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
 
-            String connectQuery = "INSERT INTO Customer (custfname, custlname, SSN, housenumber, district, state, gender, phonenumber) VALUES " +
-                    "(?,?,?,?,?,?,?,?); ";
-            PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
-            preparedStatement.setInt(1, Main.getIDcurrentGuest());
-            preparedStatement.setString(2, userLastName.getText());
-            preparedStatement.setString(3, userSSN.getText());
-            preparedStatement.setString(4, userHouseNumber.getText());
-            preparedStatement.execute();
-            rollingAnimation(customerAdd);
-            Main.loadUserData();
-        } catch (SQLException e) {
+            int hourIn = choiceboxRoomDateInHourRR.getValue();
+            int minuteIn = choiceboxRoomDateInMinuteRR.getValue();
+            int hourOut = choiceboxRoomDateOutHourRR.getValue();
+            int minuteOut = choiceboxRoomDateOutMinuteRR.getValue();
+            LocalDate dateIn = choiceboxRoomDateInDateRR.getValue();
+            LocalDate dateOut = choiceboxRoomDateOutDateRR.getValue();
+
+            String timeIn = dateIn + " " + hourIn + ":" + minuteIn + ":00";
+            String timeOut = dateOut + " " + hourOut + ":" + minuteOut + ":00";
+
+            System.out.println("Time In: " + timeIn);
+            System.out.println("Time Out: " + timeOut);
+
+            for (RoomInformation room : Main.getRoomData()) {
+                if (room.getRoom_number() == Integer.valueOf(choiceboxRoomNumberRI.getText())) {
+                    String connectQuery = "INSERT INTO reservation (room_ID, date_in, date_out, customer_ID) VALUES " +
+                            "(?,?,?,?); ";
+                    PreparedStatement preparedStatement = connectDB.prepareStatement(connectQuery);
+                    preparedStatement.setInt(1, room.getRoom_ID());
+                    preparedStatement.setString(2, timeIn);
+                    preparedStatement.setString(3, timeOut);
+                    preparedStatement.setInt(4, Main.getIDcurrentGuest());
+                    preparedStatement.execute();
+                    rollingAnimation(customerAdd);
+                    Main.loadUserData();
+                    break;
+                }
+            }
+
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
     }
