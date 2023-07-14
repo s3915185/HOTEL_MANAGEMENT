@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.PaymentCashController">
    <children>
-      <Button layoutX="224.0" layoutY="388.0" mnemonicParsing="false" text="Pay With Cash" />
+      <Button fx:id="payWithCashBtn" layoutX="224.0" layoutY="388.0" mnemonicParsing="false" text="Pay With Cash" onMouseClicked="#payWithCashBtnClicked" />
    </children>
 </Pane>

@@ -58,6 +58,7 @@ create table payment (
     payment_date DATETIME,
     amount DOUBLE,
     reservation_ID INT,
+    payment_type VARCHAR(10),
     foreign key (reservation_ID) references reservation(reservation_ID)
 );
 
@@ -204,5 +205,5 @@ insert into reservation (room_ID, date_in, date_out, customer_ID) values (1, '20
 insert into reservation (room_ID, date_in, date_out, customer_ID) values (2, '2023-04-03 18:00:00', '2023-04-06 18:00:00', 3);
 insert into reservation (room_ID, date_in, date_out, customer_ID) values (2, '2023-06-08 18:00:00', '2023-06-12 18:00:00', 4);
 
-insert into payment (customer_ID, payment_date, amount, reservation_ID) values (1, '2023-05-05 18:00:00', 5.00, 1);
-insert into payment (customer_ID, payment_date, amount, reservation_ID) values (2, '2023-06-07 18:00:00', 2.00, 2);
+insert into payment (customer_ID, payment_date, amount, reservation_ID, payment_type) values (1, '2023-05-05 18:00:00', 5.00, 1, "BANKING");
+insert into payment (customer_ID, payment_date, amount, reservation_ID, payment_type) values (2, '2023-06-07 18:00:00', 2.00, 2, "CASH");

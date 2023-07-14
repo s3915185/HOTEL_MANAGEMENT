@@ -226,6 +226,10 @@ public class CheckInController implements Initializable {
         Main.loadSpecificSelectedRoom(roomType, timeIn, timeOut);
         displayRoomAvailability();
         rollingAnimation(reloadRoomAvailability);
+        if (Main.getRandomObject() != null) {
+            addResClicked();
+            Main.setRandomObject(null);
+        }
     }
 
 
@@ -248,7 +252,7 @@ public class CheckInController implements Initializable {
     }
 
 
-    private void rollingAnimation(ImageView icon) {
+    private static void rollingAnimation(ImageView icon) {
         RotateTransition rollingAnimation = new RotateTransition(Duration.millis(300), icon);
         rollingAnimation.setByAngle(360);
         rollingAnimation.setCycleCount(1);
@@ -417,7 +421,7 @@ public class CheckInController implements Initializable {
         ObservableList<RoomInformation> roomSelected = tableView.getSelectionModel().getSelectedItems();
         if (mouseEvent.getClickCount() == 2) {
             showRoomInformation(roomSelected.get(0).getRoom_ID());
-            loadPaymentHistory(roomSelected.get(0).getRoom_ID());
+            //loadPaymentHistory(roomSelected.get(0).getRoom_ID());
             paymentID.setCellValueFactory(new PropertyValueFactory<>("payment_ID"));
             amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
             date.setCellValueFactory(new PropertyValueFactory<>("payment_date"));
@@ -482,6 +486,7 @@ public class CheckInController implements Initializable {
     }
 
     public void addResClicked() {
+        System.out.println("Went to Add REs");
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
@@ -509,17 +514,30 @@ public class CheckInController implements Initializable {
                     preparedStatement.setString(3, timeOut);
                     preparedStatement.setInt(4, Main.getIDcurrentGuest());
                     preparedStatement.execute();
-                    rollingAnimation(customerAdd);
-                    Main.loadUserData();
                     break;
                 }
             }
 
+            String secondQuery = "insert into hotelmanagement.payment (customer_ID, payment_date, amount, reservation_ID, payment_type)\n" +
+                    "values (?, ?, ?, \n" +
+                    "(SELECT reservation_ID FROM hotelmanagement.reservation ORDER BY reservation_ID DESC LIMIT 0, 1)\n" +
+                    ", ?);";
+            PreparedStatement preparedStatementSecond = connectDB.prepareStatement(secondQuery);
+            preparedStatementSecond.setInt(1, PaymentInformation.class.cast(Main.getRandomObject()).getCustomer_ID());
+            preparedStatementSecond.setString(2, PaymentInformation.class.cast(Main.getRandomObject()).getPayment_date() + " " +
+                    PaymentInformation.class.cast(Main.getRandomObject()).getPayment_time());
+            preparedStatementSecond.setDouble(3, Double.parseDouble(firstPay.getText()));
+            preparedStatementSecond.setString(4, PaymentInformation.class.cast(Main.getRandomObject()).getPaymentType());
+            preparedStatementSecond.execute();
+            rollingAnimation(customerAdd);
+            Main.loadUserData();
+            Main.loadRoomReservation();
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void paymentDirectBtnClicked() {
         try {
@@ -536,6 +554,7 @@ public class CheckInController implements Initializable {
     }
 
     private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
+    /*
     public void loadPaymentHistory(Integer roomID) {
         if (paymentDataObjectList != null) {
             paymentDataObjectList.clear();
@@ -574,8 +593,12 @@ public class CheckInController implements Initializable {
             e.printStackTrace();
         }
     }
+
+     */
     public static ObservableList<PaymentInformation> getPaymentDataObjectList() {
         return paymentDataObjectList;
     }
 
+    public void addResClicked(MouseEvent mouseEvent) {
+    }
 }

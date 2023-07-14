@@ -1,5 +1,6 @@
 package com.example.hotelmanagement;
 
+import com.example.hotelmanagement.Objects.PaymentInformation;
 import com.example.hotelmanagement.Objects.RoomInformation;
 import com.example.hotelmanagement.Objects.RoomReservationInformation;
 import com.example.hotelmanagement.Objects.UserInformation;
@@ -23,8 +24,10 @@ public class Main extends Application {
 
     private static ObservableList<UserInformation> userDataObjectList = FXCollections.observableArrayList();
     private static ObservableList<RoomInformation> roomDataObjectList = FXCollections.observableArrayList();
-
     private static ObservableList<RoomReservationInformation> roomReservationObjectList = FXCollections.observableArrayList();
+    private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
+
+    private static Object randomObject;
 
     public static int getIDcurrentGuest() {
         return IDcurrentGuest;
@@ -142,6 +145,15 @@ public class Main extends Application {
 
     }
 
+    public static void loadPaymentData() {
+        if (paymentDataObjectList != null) {
+            paymentDataObjectList.clear();
+        }
+    }
+    public static void setRandomObject(Object object) {
+        randomObject = object;
+    }
+
     public static void loadSpecificSelectedRoom(String roomType, String timeIn, String timeOut) {
         if (roomDataObjectList != null) {
             roomDataObjectList.clear();
@@ -186,7 +198,6 @@ public class Main extends Application {
     public static ObservableList<RoomInformation> getRoomData() {
         return  roomDataObjectList;
     }
-    public static ObservableList<RoomReservationInformation> getRoomReservationData() {
-        return roomReservationObjectList;
-    }
+    public static ObservableList<RoomReservationInformation> getRoomReservationData() {return roomReservationObjectList;}
+    public static Object getRandomObject() {return randomObject;}
 }
