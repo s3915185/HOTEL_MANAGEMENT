@@ -25,9 +25,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -69,7 +67,7 @@ public class CheckInController implements Initializable {
     private TextField serviceCharges;
 
     @FXML
-    private TextField totalPaid;
+    private TextField firstPay;
 
     @FXML
     private TextField userDistrict;
@@ -160,6 +158,11 @@ public class CheckInController implements Initializable {
     private TextField choiceboxRoomTypeRI;
     @FXML
     private TextField discountPercentConverted;
+
+
+    @FXML
+    private ImageView paymentDirectBtn;
+
 
 
 
@@ -451,8 +454,10 @@ public class CheckInController implements Initializable {
                 serviceCharges.setText("0");
                 changes.setText("0");
                 grandTotal.setText(String.valueOf(object.getRoom_price() - discount));
-                totalPaid.setText("0");
+                grandTotal.setEditable(false);
+                firstPay.setText("0");
                 balance.setText(grandTotal.getText());
+                balance.setEditable(false);
             }
         }
     }
@@ -466,10 +471,14 @@ public class CheckInController implements Initializable {
     }
 
     public void keyPressed() {
+        if (discountPercent.getText().equals("")) {
+            discountPercent.setText("0");
+        }
         double discount = Double.parseDouble(discountPercent.getText()) * Double.parseDouble(roomCharges.getText()) / 100;
         discountPercentConverted.setText(String.valueOf(discount));
         grandTotal.setText(String.valueOf(Double.parseDouble(roomCharges.getText()) - Double.parseDouble(discountPercentConverted.getText())));
-        balance.setText(grandTotal.getText());
+        balance.setText(String.valueOf(Double.parseDouble(grandTotal.getText().toString()) - Double.parseDouble(firstPay.getText().toString())));
+
     }
 
     public void addResClicked() {
@@ -508,6 +517,20 @@ public class CheckInController implements Initializable {
 
         }
         catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void paymentDirectBtnClicked() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hotelmanagement/actionFXMLs/CheckIn/Payment_Information.fxml"));
+            Parent paymentInfoQR = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(paymentInfoQR));
+            stage.setTitle("Scan Payment");
+            stage.show();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

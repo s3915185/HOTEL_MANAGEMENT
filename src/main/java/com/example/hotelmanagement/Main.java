@@ -48,8 +48,6 @@ public class Main extends Application {
         loadUserData();
         loadRoomReservation();
         loadRoomData("");
-
-
     }
 
     public static void main(String[] args) {

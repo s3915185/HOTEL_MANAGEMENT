@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.PaymentInformationController">
+   <children>
+      <BorderPane fx:id="borderPanePayment" prefHeight="1000.0" prefWidth="540.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="bankingTypeBtn" mnemonicParsing="false" onMouseClicked="#toBankingClicked" text="Banking" />
+                  <Button fx:id="cashTypeBtn" mnemonicParsing="false" onMouseClicked="#toCashClicked" text="Cash" />
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <Pane prefHeight="800.0" prefWidth="540.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

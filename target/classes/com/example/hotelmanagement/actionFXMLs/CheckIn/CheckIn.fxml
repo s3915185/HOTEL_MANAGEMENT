@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
    <children>
       <HBox alignment="CENTER" layoutX="270.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
          <children>
@@ -120,10 +129,18 @@
       <Text fill="#4a274f" layoutX="850.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Changes:" />
       <TextField fx:id="changes" layoutX="920.0" layoutY="362.0" prefHeight="26.0" prefWidth="121.0" />
       <Text fill="#4a274f" layoutX="850.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grand Total:" />
-      <Text fill="#4a274f" layoutX="850.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Paid:" />
+      <Text fill="#4a274f" layoutX="850.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Pay:" />
       <Text fill="#4a274f" layoutX="850.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <TextField fx:id="grandTotal" layoutX="920.0" layoutY="406.0" prefHeight="26.0" prefWidth="121.0" />
-      <TextField fx:id="totalPaid" layoutX="920.0" layoutY="432.0" prefHeight="26.0" prefWidth="121.0" />
+      <TextField fx:id="firstPay" layoutX="920.0" layoutY="432.0" onKeyPressed="#keyPressed" prefHeight="26.0" prefWidth="121.0" />
+      <ImageView fx:id="paymentDirectBtn" fitHeight="100.0" fitWidth="113.0" layoutX="1057.0" layoutY="389.0" onMouseClicked="#paymentDirectBtnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../images/logo/payment_logo.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
       <TextField fx:id="balance" layoutX="920.0" layoutY="458.0" prefHeight="26.0" prefWidth="121.0" />
       <ImageView fx:id="reloadTotalPage" fitHeight="16.0" fitWidth="18.0" layoutX="7.0" layoutY="101.0" onMouseClicked="#reloadTotalPageClicked" pickOnBounds="true" preserveRatio="true">
          <image>
