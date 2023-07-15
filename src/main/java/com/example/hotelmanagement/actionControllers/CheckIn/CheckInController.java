@@ -4,6 +4,7 @@ import com.example.hotelmanagement.DatabaseConnection;
 import com.example.hotelmanagement.Main;
 import com.example.hotelmanagement.Objects.PaymentInformation;
 import com.example.hotelmanagement.Objects.RoomInformation;
+import com.example.hotelmanagement.Objects.UserInformation;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -28,6 +29,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import static com.example.hotelmanagement.Main.getPaymentData;
+import static com.example.hotelmanagement.Main.loadOneCustomerInfo;
 
 public class CheckInController implements Initializable {
 
@@ -165,8 +169,6 @@ public class CheckInController implements Initializable {
 
 
 
-
-
     public void reloadTotalPageClicked() {
         setInfoForOldCustomer();
         rollingAnimation(reloadTotalPage);
@@ -268,22 +270,24 @@ public class CheckInController implements Initializable {
     }
 
     public void setInfoForOldCustomer() {
-        Main.getUserData().forEach(user -> {
-            if (Main.getIDcurrentGuest() == user.getCust_ID()) {
-                System.out.println(user.getClass());
-                userFirstName.setText(user.getCustfname());
-                userLastName.setText(user.getCustlname());
-                userSSN.setText(user.getSSN());
-                userHouseNumber.setText(user.getHousenumber());
-                userDistrict.setText(user.getDistrict());
-                userState.setText(user.getState());
-                userGender.setText(user.getGender());
-                userPhoneNumber.setText(user.getPhonenumber());
-            }
-        });
+        UserInformation user = (UserInformation) loadOneCustomerInfo(Main.getIDcurrentGuest());
+        if (user == null) {
+            return;
+        }
+        System.out.println(user.getClass());
+        userFirstName.setText(user.getCustfname());
+        userLastName.setText(user.getCustlname());
+        userSSN.setText(user.getSSN());
+        userHouseNumber.setText(user.getHousenumber());
+        userDistrict.setText(user.getDistrict());
+        userState.setText(user.getState());
+        userGender.setText(user.getGender());
+        userPhoneNumber.setText(user.getPhonenumber());
         if (Main.getIDcurrentGuest() != 0 ) {
             setUserEntryEditable(false);
         }
+
+
     }
 
     private void displayRoomAvailability() {
@@ -426,44 +430,40 @@ public class CheckInController implements Initializable {
             amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
             date.setCellValueFactory(new PropertyValueFactory<>("payment_date"));
             signature.setCellValueFactory(new PropertyValueFactory<>("customer_ID"));
-            paidList.setItems(getPaymentDataObjectList());
+            paidList.setItems(getPaymentData());
         }
     }
     private void showRoomInformation(Integer roomID) {
         discountPercent.setText("10");
-        for (RoomInformation object : Main.getRoomData()) {
-            if (object.getRoom_ID() == roomID) {
-                choiceboxRoomNumberRI.setText(String.valueOf(object.getRoom_number()));
-                choiceboxDateInDateRI.setText(String.valueOf(choiceboxRoomDateInDateRR.getValue()));
-                choiceboxDateInTimeRI.setText(choiceboxRoomDateInHourRR.getValue() + ": " + choiceboxRoomDateInMinuteRR.getValue());
-                choiceboxDateOutDateRI.setText(String.valueOf(choiceboxRoomDateOutDateRR.getValue()));
-                choiceboxDateOutTimeRI.setText(choiceboxRoomDateOutHourRR.getValue() + ": " + choiceboxRoomDateOutMinuteRR.getValue());
-                choiceboxAdultsRI.setText(String.valueOf(choiceboxAdultsRR.getValue()));
-                choiceboxChildrensRI.setText(String.valueOf(choiceboxChildrensRR.getValue()));
-                choiceboxRoomTypeRI.setText(object.getRoom_type());
-                roomCharges.setText(String.valueOf(object.getRoom_price()));
-                choiceboxRoomNumberRI.setEditable(false);
-                choiceboxDateInDateRI.setEditable(false);
-                choiceboxDateInTimeRI.setEditable(false);
-                choiceboxDateOutDateRI.setEditable(false);
-                choiceboxDateOutTimeRI.setEditable(false);
-                choiceboxAdultsRI.setEditable(false);
-                choiceboxChildrensRI.setEditable(false);
-                choiceboxRoomTypeRI.setEditable(false);
-                roomCharges.setEditable(false);
-                roomID = object.getRoom_ID();
-                double discount = Double.parseDouble(discountPercent.getText()) * object.getRoom_price() / 100;
-                discountPercentConverted.setText(String.valueOf(discount));
-                discountPercentConverted.setEditable(false);
-                serviceCharges.setText("0");
-                changes.setText("0");
-                grandTotal.setText(String.valueOf(object.getRoom_price() - discount));
-                grandTotal.setEditable(false);
-                firstPay.setText("0");
-                balance.setText(grandTotal.getText());
-                balance.setEditable(false);
-            }
-        }
+        RoomInformation object = (RoomInformation) Main.loadRoomInformation(roomID);
+        choiceboxRoomNumberRI.setText(String.valueOf(object.getRoom_number()));
+        choiceboxDateInDateRI.setText(String.valueOf(choiceboxRoomDateInDateRR.getValue()));
+        choiceboxDateInTimeRI.setText(choiceboxRoomDateInHourRR.getValue() + ": " + choiceboxRoomDateInMinuteRR.getValue());
+        choiceboxDateOutDateRI.setText(String.valueOf(choiceboxRoomDateOutDateRR.getValue()));
+        choiceboxDateOutTimeRI.setText(choiceboxRoomDateOutHourRR.getValue() + ": " + choiceboxRoomDateOutMinuteRR.getValue());
+        choiceboxAdultsRI.setText(String.valueOf(choiceboxAdultsRR.getValue()));
+        choiceboxChildrensRI.setText(String.valueOf(choiceboxChildrensRR.getValue()));
+        choiceboxRoomTypeRI.setText(object.getRoom_type());
+        roomCharges.setText(String.valueOf(object.getRoom_price()));
+        choiceboxRoomNumberRI.setEditable(false);
+        choiceboxDateInDateRI.setEditable(false);
+        choiceboxDateInTimeRI.setEditable(false);
+        choiceboxDateOutDateRI.setEditable(false);
+        choiceboxDateOutTimeRI.setEditable(false);
+        choiceboxAdultsRI.setEditable(false);
+        choiceboxChildrensRI.setEditable(false);
+        choiceboxRoomTypeRI.setEditable(false);
+        roomCharges.setEditable(false);
+        double discount = Double.parseDouble(discountPercent.getText()) * object.getRoom_price() / 100;
+        discountPercentConverted.setText(String.valueOf(discount));
+        discountPercentConverted.setEditable(false);
+        serviceCharges.setText("0");
+        changes.setText("0");
+        grandTotal.setText(String.valueOf(object.getRoom_price() - discount));
+        grandTotal.setEditable(false);
+        firstPay.setText("0");
+        balance.setText(grandTotal.getText());
+        balance.setEditable(false);
     }
     public void mouseEntered(javafx.scene.input.MouseEvent mouseEvent) {
         if (choiceboxRoomDateInHourRR != null) {
@@ -552,9 +552,7 @@ public class CheckInController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
-    /*
+        /*
     public void loadPaymentHistory(Integer roomID) {
         if (paymentDataObjectList != null) {
             paymentDataObjectList.clear();
@@ -595,10 +593,4 @@ public class CheckInController implements Initializable {
     }
 
      */
-    public static ObservableList<PaymentInformation> getPaymentDataObjectList() {
-        return paymentDataObjectList;
-    }
-
-    public void addResClicked(MouseEvent mouseEvent) {
-    }
 }

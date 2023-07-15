@@ -49,7 +49,8 @@ create table reservation (
     date_in DATETIME,
     date_out DATETIME,
     customer_ID INT,
-    foreign key (customer_ID) references customer(cust_ID)
+    foreign key (customer_ID) references customer(cust_ID),
+    foreign key (room_ID) references room(room_ID)
 );
 
 create table payment (

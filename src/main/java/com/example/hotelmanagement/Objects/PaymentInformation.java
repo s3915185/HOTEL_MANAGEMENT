@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class PaymentInformation {
+    private int payment_ID;
     private int customer_ID;
     private String payment_date;
 
@@ -12,7 +13,21 @@ public class PaymentInformation {
     private int reservation_ID;
     private String paymentType;
 
+    public int getPayment_ID() {
+        return payment_ID;
+    }
+
     public PaymentInformation(int customer_ID, String payment_date, String payment_time, double amount, int reservation_ID, String paymentType) {
+        this.customer_ID = customer_ID;
+        this.payment_date = payment_date;
+        this.payment_time = payment_time;
+        this.amount = amount;
+        this.reservation_ID = reservation_ID;
+        this.paymentType = paymentType;
+    }
+
+    public PaymentInformation(int payment_ID, int customer_ID, String payment_date, String payment_time, double amount, int reservation_ID, String paymentType) {
+        this.payment_ID = payment_ID;
         this.customer_ID = customer_ID;
         this.payment_date = payment_date;
         this.payment_time = payment_time;

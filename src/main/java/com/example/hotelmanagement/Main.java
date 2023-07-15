@@ -8,17 +8,23 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -26,8 +32,10 @@ public class Main extends Application {
     private static ObservableList<RoomInformation> roomDataObjectList = FXCollections.observableArrayList();
     private static ObservableList<RoomReservationInformation> roomReservationObjectList = FXCollections.observableArrayList();
     private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
-
     private static Object randomObject;
+
+
+    public static Object randomObjectList[];
 
     public static int getIDcurrentGuest() {
         return IDcurrentGuest;
@@ -51,6 +59,7 @@ public class Main extends Application {
         loadUserData();
         loadRoomReservation();
         loadRoomData("");
+        loadPaymentData();
     }
 
     public static void main(String[] args) {
@@ -65,7 +74,6 @@ public class Main extends Application {
         Connection connectDB = connectNow.getConnection();
         String connectQuery = "SELECT cust_ID, custfname, custlname, SSN, housenumber, district, state, gender, phonenumber FROM CUSTOMER";
         try {
-
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
@@ -125,18 +133,12 @@ public class Main extends Application {
             ResultSet queryOutput = statement.executeQuery(connectQuery);
 
             while (queryOutput.next()) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String dateIn = String.valueOf(queryOutput.getString("date_in"));
                 String dateInDate = dateIn.split(" ")[0];
                 String dateInTime = dateIn.split(" ")[1];
                 String dateOut = String.valueOf(queryOutput.getString("date_out"));
                 String dateOutDate = dateOut.split(" ")[0];
                 String dateOutTime = dateOut.split(" ")[1];
-                System.out.println("Date In Date: " + dateInDate);
-                System.out.println("Date In Time: " + dateInTime);
-                System.out.println("Date Out Date: " +dateOutDate);
-                System.out.println("Date Out Time: " +dateOutTime);
-
                 roomReservationObjectList.add(new RoomReservationInformation(queryOutput.getInt("room_ID"), dateInDate, dateInTime, dateOutDate, dateOutTime, queryOutput.getInt("customer_ID")));
             }
         } catch (Exception e) {
@@ -145,14 +147,90 @@ public class Main extends Application {
 
     }
 
+    public static Object loadOneCustomerInfo(int info) {
+        if (randomObject != null) {
+            randomObject = null;
+        }
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = "SELECT cust_ID, custfname, custlname, SSN, housenumber, district, state, gender," +
+                " phonenumber FROM hotelmanagement.customer " +
+                "WHERE cust_ID = "+ info +";";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+            while (queryOutput.next()) {
+                return new UserInformation(queryOutput.getInt("cust_ID"), queryOutput.getString("custfname"),
+                        queryOutput.getString("custlname"), queryOutput.getString("SSN"), queryOutput.getString("housenumber"), queryOutput.getString("district"),
+                        queryOutput.getString("state"), queryOutput.getString("gender"), queryOutput.getString("phonenumber"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        randomObject = null;
+        return null;
+    }
+
+    public static Object loadRoomInformation(int info) {
+        if (randomObject != null) {
+            randomObject = null;
+        }
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+
+        String connectQuery = "SELECT r.room_ID as room_ID, r.roomNumber as room_number, rq.quality as room_quality, rc.class_name as room_type, (rc.class_price * rq.priceMultiply) as room_price, rc.class_description as comments\n" +
+                "FROM hotelmanagement.room r, hotelmanagement.roomQuality rq, hotelmanagement.roomClass rc\n" +
+                "WHERE r.roomQuality = rq.roomQuality_ID\n" +
+                "AND rc.class_ID = r.class_ID\n" +
+                "AND room_ID = " + info + ";";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()) {
+                return new RoomInformation(queryOutput.getInt("room_ID"),
+                        queryOutput.getInt("room_number"),
+                        queryOutput.getString("room_quality"),
+                        queryOutput.getString("room_type"),
+                        queryOutput.getString("comments"), queryOutput.getDouble("room_price"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public static void loadPaymentData() {
         if (paymentDataObjectList != null) {
             paymentDataObjectList.clear();
         }
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String connectQuery = "Select payment_ID, customer_ID, payment_date, amount, reservation_ID, payment_type FROM hotelmanagement.payment";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()) {
+                String dateReceived = String.valueOf(queryOutput.getString("payment_date"));
+                String date = dateReceived.split(" ")[0];
+                String time = dateReceived.split(" ")[1];
+                paymentDataObjectList.add(new PaymentInformation(queryOutput.getInt("payment_ID"),
+                        queryOutput.getInt("customer_ID"), date, time,
+                        queryOutput.getDouble("amount"), queryOutput.getInt("reservation_ID"), queryOutput.getString("payment_type")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
     public static void setRandomObject(Object object) {
         randomObject = object;
     }
+
 
     public static void loadSpecificSelectedRoom(String roomType, String timeIn, String timeOut) {
         if (roomDataObjectList != null) {
@@ -200,4 +278,7 @@ public class Main extends Application {
     }
     public static ObservableList<RoomReservationInformation> getRoomReservationData() {return roomReservationObjectList;}
     public static Object getRandomObject() {return randomObject;}
+    public static ObservableList<PaymentInformation> getPaymentData() {return paymentDataObjectList;}
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.actionControllers.CheckOut;
 
 import com.example.hotelmanagement.Main;
+import com.example.hotelmanagement.Objects.PaymentInformation;
 import com.example.hotelmanagement.Objects.RoomReservationInformation;
 import com.example.hotelmanagement.Objects.UserInformation;
 import javafx.fxml.FXML;
@@ -50,6 +51,9 @@ public class CheckOutController implements Initializable {
         for (RoomReservationInformation roomReservationInformation : Main.getRoomReservationData()) {
             System.out.println(roomReservationInformation.toString());
         }
+        for (PaymentInformation paymentInformation : Main.getPaymentData()) {
+            System.out.println(paymentInformation.toString());
+        }
     }
 
     public void searchInfoBtnClicked() {
@@ -73,6 +77,7 @@ public class CheckOutController implements Initializable {
             }
             if (userFound == true && reservationFound == true) {
                 System.out.println("Got to the clearer path");
+
             }
         }
 

@@ -10,18 +10,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#mouseEntered" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckIn.CheckInController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.RoomReservation.RoomReservationController">
    <children>
       <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
       <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
       <Line endX="1104.0" layoutX="46.0" layoutY="100.0" stroke="#4a274f" />
-      <Line endX="580.0" endY="767.5" layoutX="56.0" layoutY="110.0" startX="580.0" stroke="#a97db2" />
+      <Line endX="722.0" endY="767.5" layoutX="56.0" layoutY="110.0" startX="722.0" stroke="#a97db2" />
       <Line endX="1116.5" layoutX="114.0" layoutY="878.0" startX="-115.0" stroke="#4a274f" />
       <Line endX="-125.0" endY="770.0" layoutX="125.0" layoutY="120.0" startX="-125.0" startY="-120.0" stroke="#4a274f" />
       <Line endX="1105.0" endY="-120.0" layoutX="125.0" layoutY="120.0" startX="1105.0" startY="770.0" stroke="#4a274f" />
@@ -43,23 +44,24 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox prefHeight="751.0" prefWidth="1200.0">
+            <HBox prefHeight="796.0" prefWidth="1230.0">
                <children>
-                  <VBox prefHeight="751.0" prefWidth="637.0">
+                  <VBox prefHeight="774.0" prefWidth="779.0">
                      <children>
-                        <HBox prefHeight="53.0" prefWidth="634.0">
+                        <HBox prefHeight="53.0" prefWidth="634.0" spacing="20.0">
                            <children>
                               <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick Month: ">
                                  <HBox.margin>
                                     <Insets left="30.0" />
                                  </HBox.margin>
                               </Text>
-                              <DatePicker />
+                              <DatePicker fx:id="monthPicker" onAction="#daySelected" />
+                              <TilePane fx:id="tilePaneDirections" prefHeight="200.0" prefWidth="468.0" />
                            </children>
                         </HBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="682.0" prefWidth="634.0" spacing="10.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="726.0" prefWidth="779.0">
                            <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="61.0" prefWidth="634.0" spacing="70.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="634.0" spacing="88.0">
                                  <children>
                                     <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun">
                                        <HBox.margin>
@@ -101,335 +103,402 @@
                                     </Text>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="648.0">
+                              <HBox alignment="CENTER" prefHeight="113.0" prefWidth="648.0">
                                  <children>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sun_1" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                                <Text fx:id="sun__1" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="mon_2" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                                <Text fx:id="mon__2" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="tue_3" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                                <Text fx:id="tue__3" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="wed_4" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                                <Text fx:id="wed__4" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="thu_5" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                                <Text fx:id="thu__5" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="fri_6" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                                <Text fx:id="fri__6" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sat_7" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                                <Text fx:id="sat__7" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="81.0" prefHeight="100.0" prefWidth="648.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="81.0" prefHeight="113.0" prefWidth="648.0">
                                  <children>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sun_8" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                                <Text fx:id="sun__8" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="mon_9" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                                <Text fx:id="mon__9" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="tue_10" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                                <Text fx:id="tue__10" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="wed_11" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                                <Text fx:id="wed__11" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="thu_12" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                                <Text fx:id="thu__12" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="fri_13" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                                <Text fx:id="fri__13" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sat_14" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                                <Text fx:id="sat__14" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="81.0" prefHeight="100.0" prefWidth="648.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="81.0" prefHeight="113.0" prefWidth="648.0">
                                  <children>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sun_15" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                                <Text fx:id="sun__15" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="mon_16" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                                <Text fx:id="mon__16" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="tue_17" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                                <Text fx:id="tue__17" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="wed_18" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                                <Text fx:id="wed__18" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="thu_19" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                                <Text fx:id="thu__19" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="fri_20" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                                <Text fx:id="fri__20" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sat_21" alignment="TOP_CENTER" prefHeight="119.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                                <Text fx:id="sat__21" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="191.0" prefHeight="100.0" prefWidth="648.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="191.0" prefHeight="113.0" prefWidth="648.0">
                                  <children>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sun_22" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                                <Text fx:id="sun__22" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="mon_23" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                                <Text fx:id="mon__23" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="tue_24" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                                <Text fx:id="tue__24" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="wed_25" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                                <Text fx:id="wed__25" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="thu_26" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                                <Text fx:id="thu__26" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="fri_27" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                                <Text fx:id="fri__27" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sat_28" alignment="TOP_CENTER" prefHeight="119.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                                <Text fx:id="sat__28" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="411.0" prefHeight="100.0" prefWidth="648.0">
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="411.0" prefHeight="113.0" prefWidth="648.0">
                                  <children>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sun_29" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                                <Text fx:id="sun__29" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="mon_30" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                                <Text fx:id="mon__30" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="tue_31" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                                <Text fx:id="tue__31" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="wed_32" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                                <Text fx:id="wed__32" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="thu_33" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                                <Text fx:id="thu__33" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="fri_34" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                                <Text fx:id="fri__34" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </Pane>
-                                    <Pane prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="90.0">
+                                          <VBox fx:id="sat_35" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
                                              <children>
-                                                <Text fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                                <Text fx:id="sat__35" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="521.0" prefHeight="113.0" prefWidth="648.0">
+                                 <children>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="sun_36" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="sun__36" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="mon_37" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="mon__37" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="tue_38" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="tue__38" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="wed_39" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="wed__39" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="thu_40" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="thu__40" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="fri_41" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="fri__41" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="100.0" prefWidth="110.0" style="-fx-background-color: #fff1f1; -fx-border-color: #4a274f;">
+                                       <children>
+                                          <VBox fx:id="sat_42" alignment="TOP_CENTER" prefHeight="113.0" prefWidth="110.0">
+                                             <children>
+                                                <Text fx:id="sat__42" fill="#4a274f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -440,7 +509,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="751.0" prefWidth="599.0">
+                  <VBox prefHeight="774.0" prefWidth="449.0">
                      <children>
                         <HBox prefHeight="43.0" prefWidth="596.0">
                            <children>
@@ -452,14 +521,14 @@
                               <ChoiceBox prefWidth="150.0" style="-fx-background-image: #4a274f;" />
                            </children>
                         </HBox>
-                        <TableView prefHeight="219.0" prefWidth="567.0">
-                          <columns>
-                            <TableColumn prefWidth="109.0" text="Room Number" />
-                            <TableColumn prefWidth="128.0" text="Check In " />
-                              <TableColumn prefWidth="127.0" text="Check Out" />
-                              <TableColumn prefWidth="111.0" text="Customer" />
-                              <TableColumn prefWidth="120.0" text="Phone Number" />
-                          </columns>
+                        <TableView layoutX="15.0" layoutY="345.0" prefHeight="219.0" prefWidth="439.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Room Num" />
+                              <TableColumn prefWidth="75.0" text="Check In" />
+                              <TableColumn prefWidth="75.0" text="Check Out" />
+                              <TableColumn prefWidth="75.0" text="Customer" />
+                              <TableColumn prefWidth="75.0" text="Phone No." />
+                           </columns>
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
@@ -477,17 +546,17 @@
                               <Insets top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <TableView layoutX="15.0" layoutY="53.0" prefHeight="219.0" prefWidth="567.0">
-                           <columns>
-                              <TableColumn prefWidth="109.0" text="Room Number" />
-                              <TableColumn prefWidth="128.0" text="Check In " />
-                              <TableColumn prefWidth="127.0" text="Check Out" />
-                              <TableColumn prefWidth="111.0" text="Customer" />
-                              <TableColumn prefWidth="120.0" text="Phone Number" />
-                           </columns>
+                        <TableView layoutX="15.0" layoutY="53.0" prefHeight="219.0" prefWidth="527.0">
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Room Num" />
+                              <TableColumn prefWidth="75.0" text="Check In" />
+                              <TableColumn prefWidth="75.0" text="Check Out" />
+                              <TableColumn prefWidth="75.0" text="Customer" />
+                              <TableColumn prefWidth="75.0" text="Phone No." />
+                           </columns>
                         </TableView>
                      </children>
                   </VBox>
@@ -498,7 +567,7 @@
             </HBox>
          </children>
       </VBox>
-      <Line endX="570.0" endY="295.0" layoutX="66.0" layoutY="120.0" startX="1164.0" startY="295.0" stroke="#a97db2" />
+      <Line endX="713.0" endY="280.0" layoutX="66.0" layoutY="120.0" startX="1164.0" startY="280.0" stroke="#a97db2" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
