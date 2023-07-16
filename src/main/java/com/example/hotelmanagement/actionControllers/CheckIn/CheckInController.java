@@ -211,6 +211,10 @@ public class CheckInController implements Initializable {
 
 
     public void reloadRoomAvailabilityClicked() {
+        if (Main.getRandomObjectPayment() != null) {
+            addResClicked();
+            Main.setRandomObjectPayment(null);
+        }
         String roomType = choiceboxRoomTypeRR.getValue();
         if (roomType == "All Type") {
             roomType = null;
@@ -228,10 +232,6 @@ public class CheckInController implements Initializable {
         Main.loadSpecificSelectedRoom(roomType, timeIn, timeOut);
         displayRoomAvailability();
         rollingAnimation(reloadRoomAvailability);
-        if (Main.getRandomObject() != null) {
-            addResClicked();
-            Main.setRandomObject(null);
-        }
     }
 
 
@@ -274,7 +274,6 @@ public class CheckInController implements Initializable {
         if (user == null) {
             return;
         }
-        System.out.println(user.getClass());
         userFirstName.setText(user.getCustfname());
         userLastName.setText(user.getCustlname());
         userSSN.setText(user.getSSN());
@@ -379,6 +378,7 @@ public class CheckInController implements Initializable {
                 arrayIndex++;
             }
             forHour.getItems().addAll(forHourArray);
+
         }
         else {
             Integer[] forHourArray = new Integer[24];
@@ -517,17 +517,18 @@ public class CheckInController implements Initializable {
                     break;
                 }
             }
+            System.out.println("Get through here");
 
             String secondQuery = "insert into hotelmanagement.payment (customer_ID, payment_date, amount, reservation_ID, payment_type)\n" +
                     "values (?, ?, ?, \n" +
                     "(SELECT reservation_ID FROM hotelmanagement.reservation ORDER BY reservation_ID DESC LIMIT 0, 1)\n" +
                     ", ?);";
             PreparedStatement preparedStatementSecond = connectDB.prepareStatement(secondQuery);
-            preparedStatementSecond.setInt(1, PaymentInformation.class.cast(Main.getRandomObject()).getCustomer_ID());
-            preparedStatementSecond.setString(2, PaymentInformation.class.cast(Main.getRandomObject()).getPayment_date() + " " +
-                    PaymentInformation.class.cast(Main.getRandomObject()).getPayment_time());
+            preparedStatementSecond.setInt(1, PaymentInformation.class.cast(Main.getRandomObjectPayment()).getCustomer_ID());
+            preparedStatementSecond.setString(2, PaymentInformation.class.cast(Main.getRandomObjectPayment()).getPayment_date() + " " +
+                    PaymentInformation.class.cast(Main.getRandomObjectPayment()).getPayment_time());
             preparedStatementSecond.setDouble(3, Double.parseDouble(firstPay.getText()));
-            preparedStatementSecond.setString(4, PaymentInformation.class.cast(Main.getRandomObject()).getPaymentType());
+            preparedStatementSecond.setString(4, PaymentInformation.class.cast(Main.getRandomObjectPayment()).getPaymentType());
             preparedStatementSecond.execute();
             rollingAnimation(customerAdd);
             Main.loadUserData();

@@ -24,7 +24,7 @@ public class PaymentBankingController {
         String time = LocalDateTime.getHour()+":"+LocalDateTime.getMinute()+":"+LocalDateTime.getSecond();
         System.out.println("Date: " + date);
         System.out.println("Time: "+ time);
-        Main.setRandomObject(new PaymentInformation(Main.getIDcurrentGuest(), date, time, 0, 0, "BANKING"));
+        Main.setRandomObjectPayment(new PaymentInformation(Main.getIDcurrentGuest(), date, time, 0, 0, "BANKING"));
         //Main.setRandomObject(new PaymentInformation(Main.getIDcurrentGuest(), ));
         /*
         try {

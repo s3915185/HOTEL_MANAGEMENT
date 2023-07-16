@@ -34,6 +34,15 @@ public class Main extends Application {
     private static ObservableList<PaymentInformation> paymentDataObjectList = FXCollections.observableArrayList();
     private static Object randomObject;
 
+    public static Object getRandomObjectPayment() {
+        return randomObjectPayment;
+    }
+
+    public static void setRandomObjectPayment(Object randomObjectPayment) {
+        Main.randomObjectPayment = randomObjectPayment;
+    }
+
+    private static Object randomObjectPayment;
 
     public static Object randomObjectList[];
 
