@@ -701,33 +701,38 @@ public class RoomReservationController implements Initializable{
 
     public void calendarMouseHover(MouseEvent mouseEvent) {
         try {
-            VBox vBox = (VBox) mouseEvent.getSource();
-            Object obj = this;
+            if (mouseEvent.getSource() instanceof VBox) {
+                VBox vBox = (VBox) mouseEvent.getSource();
+                Object obj = this;
 
-            for (Field field : fields) {
-                int x =0, y = 0;
-                if (vBox.getId().equals(field.getName())) {
-                    VBox vBox1 = (VBox) field.get(obj);
-                    for (int a = 0 ; a < 6; a++) {
-                        for (int b = 0; b < 7; b++) {
-                            if (paneName[a][b].equals(field.getName())) {
-                                x = a; y=b;
+                for (Field field : fields) {
+                    int x = 0, y = 0;
+                    if (vBox.getId().equals(field.getName())) {
+                        if (field.get(obj) instanceof VBox && field.getName().substring(3, 4).equals("_")) {
+                            VBox vBox1 = (VBox) field.get(obj);
+                            for (int a = 0; a < 6; a++) {
+                                for (int b = 0; b < 7; b++) {
+                                    if (paneName[a][b].equals(field.getName())) {
+                                        x = a;
+                                        y = b;
+                                    }
+                                }
                             }
+                            vBox1.setBackground(new Background(new BackgroundFill(Color.web("#fff5ff"), CornerRadii.EMPTY, Insets.EMPTY)));
+                            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.1));
+                            fadeTransition.setNode(vBox1);
+                            fadeTransition.setFromValue(0.1);
+                            fadeTransition.setToValue(1);
+                            fadeTransition.play();
+                            PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.2));
+                            pauseTransition.play();
+                            int finalX = x;
+                            int finalY = y;
+                            pauseTransition.setOnFinished(event -> {
+                                vBox1.setBackground(new Background(new BackgroundFill(Color.web(calendarPaneColor[finalX][finalY]), CornerRadii.EMPTY, Insets.EMPTY)));
+                            });
                         }
                     }
-                    vBox1.setBackground(new Background(new BackgroundFill(Color.web("#fff5ff"), CornerRadii.EMPTY, Insets.EMPTY)));
-                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.1));
-                    fadeTransition.setNode(vBox1);
-                    fadeTransition.setFromValue(0.1);
-                    fadeTransition.setToValue(1);
-                    fadeTransition.play();
-                    PauseTransition pauseTransition = new PauseTransition(Duration.seconds(0.2));
-                    pauseTransition.play();
-                    int finalX = x;
-                    int finalY = y;
-                    pauseTransition.setOnFinished(event -> {
-                        vBox1.setBackground(new Background(new BackgroundFill(Color.web(calendarPaneColor[finalX][finalY]), CornerRadii.EMPTY, Insets.EMPTY)));
-                    });
                 }
             }
         }
