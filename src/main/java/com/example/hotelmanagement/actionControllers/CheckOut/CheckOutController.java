@@ -49,10 +49,10 @@ public class CheckOutController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Main.loadRoomReservation();
         for (RoomReservationInformation roomReservationInformation : Main.getRoomReservationData()) {
-            System.out.println(roomReservationInformation.toString());
+            //System.out.println(roomReservationInformation.toString());
         }
         for (PaymentInformation paymentInformation : Main.getPaymentData()) {
-            System.out.println(paymentInformation.toString());
+            //System.out.println(paymentInformation.toString());
         }
     }
 

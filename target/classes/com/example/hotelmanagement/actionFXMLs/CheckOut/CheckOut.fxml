@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckOut.CheckOutController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.CheckOut.CheckOutController">
    <children>
       <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
       <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />

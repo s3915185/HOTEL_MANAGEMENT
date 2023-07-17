@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.RoomReservation.RoomReservationController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1230.0" style="-fx-background-color: #f0a08F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotelmanagement.actionControllers.RoomReservation.RoomReservationController">
    <children>
       <Line endX="1115.0" layoutX="115.0" layoutY="110.0" startX="-100.0" stroke="#4a274f" />
       <Circle fill="#4a274f" layoutX="15.0" layoutY="110.0" radius="11.0" stroke="#4a274f" strokeType="INSIDE" />
@@ -522,7 +522,7 @@
                                           <Insets left="30.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <ChoiceBox prefWidth="150.0" style="-fx-background-image: #4a274f;" />
+                                    <ChoiceBox prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <TableView layoutX="15.0" layoutY="345.0" prefHeight="219.0" prefWidth="439.0">
@@ -571,9 +571,9 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane fx:id="cardPane" maxHeight="500.0" maxWidth="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aaaaaa;">
+            <Pane fx:id="cardPane" maxHeight="800.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aaaaaa;">
                <children>
-                  <VBox fx:id="cardPaneVBox" alignment="CENTER" prefHeight="500.0" prefWidth="400.0" />
+                  <VBox fx:id="cardPaneVBox" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" />
                </children>
             </Pane>
          </children>
