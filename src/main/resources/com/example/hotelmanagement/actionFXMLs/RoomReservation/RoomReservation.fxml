@@ -571,9 +571,9 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane fx:id="cardPane" maxHeight="500.0" maxWidth="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aaaaaa;">
+            <Pane fx:id="cardPane" maxHeight="800.0" maxWidth="1000.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aaaaaa;">
                <children>
-                  <VBox fx:id="cardPaneVBox" alignment="CENTER" prefHeight="500.0" prefWidth="400.0" />
+                  <VBox fx:id="cardPaneVBox" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" />
                </children>
             </Pane>
          </children>

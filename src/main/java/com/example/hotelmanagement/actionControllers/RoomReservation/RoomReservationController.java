@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -34,12 +36,6 @@ import java.util.ResourceBundle;
 
 
 public class RoomReservationController implements Initializable{
-
-    @FXML
-    private DatePicker monthPicker;
-
-    @FXML
-    private TilePane tilePaneDirections;
 
     @FXML
     private VBox sun_1;
@@ -238,13 +234,16 @@ public class RoomReservationController implements Initializable{
     @FXML
     private VBox cardPaneVBox;
 
+    @FXML
+    private DatePicker monthPicker;
+
+    @FXML
+    private TilePane tilePaneDirections;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LocalDate localDate = LocalDate.now();
         monthPicker.setValue(localDate);
-        if (this.sat__7 == null) {
-            System.out.println("Its null in init");
-        }
         for(int a = 0; a < 6; a++) {
             for (int b = 0; b < 7; b++) {
                 dayCalendarMap[a][b] = 0;
@@ -254,7 +253,11 @@ public class RoomReservationController implements Initializable{
             }
         }
         fields = this.getClass().getDeclaredFields();
-        daySelected();
+        try {
+            daySelected();
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         cardPane.setVisible(false);
         cardPane.setOnMouseClicked(mouseEvent -> {
             cardPane.setVisible(false);
@@ -264,7 +267,7 @@ public class RoomReservationController implements Initializable{
 
 
 
-    public void daySelected(){
+    public void daySelected() throws IllegalAccessException {
         clearVboxForCalendarPane();
         tilePaneDirections.getChildren().clear();
         dayTasksClear();
@@ -369,7 +372,6 @@ public class RoomReservationController implements Initializable{
         loadReservationWithMonth(dayFormatCalendarMap[0][0], dayFormatCalendarMap[5][6]);
 
         loadDayTasks();
-        System.out.println("SUN 1 AFTER EVERYTHING: " + sun_1.getChildren());
     }
 
     public void loadReservationArraySize(String firstDate, String lastDate) {
@@ -445,38 +447,9 @@ public class RoomReservationController implements Initializable{
                 LocalDate.parse(queryOutput.getString("date_out").split(" ")[0]).compareTo(LocalDate.parse(dayFormatCalendarMap[5][6])) >= 0) {
                     for (int a = 0; a < 6; a++) {
                         for (int b = 0; b < 7;b++) {
-                            boolean clearObject = false;
-                            Object tempObj = null;
-                            for (Object obserb : dayTasks[a][b]) {
-                                if (obserb instanceof Label) {
-                                    clearObject = true;
-                                    tempObj = obserb;
-                                }
-                            }
-                            if (clearObject) {
-                                dayTasks[a][b].remove(tempObj);
-                            }
-                            Pane newPane = new Pane();
-                            newPane.setPrefHeight(calendarPaneColorHeight);
-                            newPane.setPrefWidth(calendarPaneColorWidth);
-                            newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                            newPane.cursorProperty().set(Cursor.HAND);
-                            newPane.setId(queryOutput.getInt("roomNumber") + "_"+ a+ "_" + b);
-                            int finalIndex8 = index;
-                            newPane.setOnMouseClicked(mouseEvent -> {
-                                if (cardPaneVBox.getChildren().size() != 0) {
-                                    cardPaneVBox.getChildren().clear();
-                                }
-                                cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex8].getText()));
-                                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                fadeTransition.setNode(cardPane);
-                                fadeTransition.setFromValue(0.1);
-                                fadeTransition.setToValue(1);
-                                fadeTransition.play();
-                                cardPane.setVisible(true);
-                                System.out.println(newPane.getId());
-                            });
-                            dayTasks[a][b].add(newPane);
+                            cleanLabels(a, b);
+                            dayTasks[a][b].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                    a, b));
                         }
                     }
 
@@ -502,75 +475,17 @@ public class RoomReservationController implements Initializable{
                     for (int m = x; m < 6; m++) {
                         if (firstLoop) {
                             for (int n = y; n < 7; n++) {
-                                boolean clearObject = false;
-                                Object tempObj = null;
-                                for (Object obserb : dayTasks[m][n]) {
-                                    if (obserb instanceof Label) {
-                                        clearObject = true;
-                                        tempObj = obserb;
-                                    }
-                                }
-                                if (clearObject) {
-                                    dayTasks[m][n].remove(tempObj);
-                                }
-                                Pane newPane = new Pane();
-                                newPane.setPrefHeight(calendarPaneColorHeight);
-                                newPane.setPrefWidth(calendarPaneColorWidth);
-                                newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                newPane.cursorProperty().set(Cursor.HAND);
-                                newPane.setId(queryOutput.getInt("roomNumber") + "_"+ m+ "_" + n);
-                                int finalIndex7 = index;
-                                newPane.setOnMouseClicked(mouseEvent -> {
-                                    if (cardPaneVBox.getChildren().size() != 0) {
-                                        cardPaneVBox.getChildren().clear();
-                                    }
-                                    cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex7].getText()));
-                                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                    fadeTransition.setNode(cardPane);
-                                    fadeTransition.setFromValue(0.1);
-                                    fadeTransition.setToValue(1);
-                                    fadeTransition.play();
-                                    cardPane.setVisible(true);
-                                    System.out.println(newPane.getId());
-                                });
-                                dayTasks[m][n].add(newPane);
+                                cleanLabels(m, n);
+                                dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                        m, n));
                             }
                             firstLoop = false;
                         }
                         else {
                             for (int n = 0; n < 7; n++) {
-                                boolean clearObject = false;
-                                Object tempObj = null;
-                                for (Object obserb : dayTasks[m][n]) {
-                                    if (obserb instanceof Label) {
-                                        clearObject = true;
-                                        tempObj = obserb;
-                                    }
-                                }
-                                if (clearObject) {
-                                    dayTasks[m][n].remove(tempObj);
-                                }
-                                Pane newPane = new Pane();
-                                newPane.setPrefHeight(calendarPaneColorHeight);
-                                newPane.setPrefWidth(calendarPaneColorWidth);
-                                newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                newPane.cursorProperty().set(Cursor.HAND);
-                                newPane.setId(queryOutput.getInt("roomNumber") + "_"+m+ "_" + n);
-                                int finalIndex6 = index;
-                                newPane.setOnMouseClicked(mouseEvent -> {
-                                    if (cardPaneVBox.getChildren().size() != 0) {
-                                        cardPaneVBox.getChildren().clear();
-                                    }
-                                    cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex6].getText()));
-                                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                    fadeTransition.setNode(cardPane);
-                                    fadeTransition.setFromValue(0.1);
-                                    fadeTransition.setToValue(1);
-                                    fadeTransition.play();
-                                    cardPane.setVisible(true);
-                                    System.out.println(newPane.getId());
-                                });
-                                dayTasks[m][n].add(newPane);
+                                cleanLabels(m, n);
+                                dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                        m, n));
                             }
                         }
                     }
@@ -583,73 +498,15 @@ public class RoomReservationController implements Initializable{
                     for (int a = 0; a < 6; a++) {
                         for (int b = 0; b < 7; b++) {
                             if (LocalDate.parse(dayFormatCalendarMap[a][b]).compareTo(LocalDate.parse(queryOutput.getString("date_out").split(" ")[0])) == 0) {
-                                boolean clearObject = false;
-                                Object tempObj = null;
-                                for (Object obserb : dayTasks[a][b]) {
-                                    if (obserb instanceof Label) {
-                                        clearObject = true;
-                                        tempObj = obserb;
-                                    }
-                                }
-                                if (clearObject) {
-                                    dayTasks[a][b].remove(tempObj);
-                                }
-                                Pane newPane = new Pane();
-                                newPane.setPrefHeight(calendarPaneColorHeight);
-                                newPane.setPrefWidth(calendarPaneColorWidth);
-                                newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                newPane.cursorProperty().set(Cursor.HAND);
-                                newPane.setId(queryOutput.getInt("roomNumber") + "_"+ a+ "_" + b);
-                                int finalIndex5 = index;
-                                newPane.setOnMouseClicked(mouseEvent -> {
-                                    if (cardPaneVBox.getChildren().size() != 0) {
-                                        cardPaneVBox.getChildren().clear();
-                                    }
-                                    cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex5].getText()));
-                                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                    fadeTransition.setNode(cardPane);
-                                    fadeTransition.setFromValue(0.1);
-                                    fadeTransition.setToValue(1);
-                                    fadeTransition.play();
-                                    cardPane.setVisible(true);
-                                    System.out.println(newPane.getId());
-                                });
-                                dayTasks[a][b].add(newPane);
+                                cleanLabels(a, b);
+                                dayTasks[a][b].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                        a, b));
                                 toBreakOut = true;
                                 break;
                             }
-                            boolean clearObject = false;
-                            Object tempObj = null;
-                            for (Object obserb : dayTasks[a][b]) {
-                                if (obserb instanceof Label) {
-                                    clearObject = true;
-                                    tempObj = obserb;
-                                }
-                            }
-                            if (clearObject) {
-                                dayTasks[a][b].remove(tempObj);
-                            }
-                            Pane newPane = new Pane();
-                            newPane.setPrefHeight(calendarPaneColorHeight);
-                            newPane.setPrefWidth(calendarPaneColorWidth);
-                            newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                            newPane.cursorProperty().set(Cursor.HAND);
-                            newPane.setId(queryOutput.getInt("roomNumber") + "_"+ a+ "_" + b);
-                            int finalIndex = index;
-                            newPane.setOnMouseClicked(mouseEvent -> {
-                                if (cardPaneVBox.getChildren().size() != 0) {
-                                    cardPaneVBox.getChildren().clear();
-                                }
-                                cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex].getText()));
-                                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                fadeTransition.setNode(cardPane);
-                                fadeTransition.setFromValue(0.1);
-                                fadeTransition.setToValue(1);
-                                fadeTransition.play();
-                                cardPane.setVisible(true);
-                                System.out.println(newPane.getId());
-                            });
-                            dayTasks[a][b].add(newPane);
+                            cleanLabels(a, b);
+                            dayTasks[a][b].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                    a, b));
                         }
                         if (toBreakOut) {
                             break;
@@ -682,72 +539,14 @@ public class RoomReservationController implements Initializable{
                             for (int n = y; n < 7; n++) {
                                 if (LocalDate.parse(dayFormatCalendarMap[m][n]).compareTo(LocalDate.parse(queryOutput.getString("date_out").split(" ")[0])) == 0) {
                                     toBreakLoop2 = true;
-                                    boolean clearObject = false;
-                                    Object tempObj = null;
-                                    for (Object obserb : dayTasks[m][n]) {
-                                        if (obserb instanceof Label) {
-                                            clearObject = true;
-                                            tempObj = obserb;
-                                        }
-                                    }
-                                    if (clearObject) {
-                                        dayTasks[m][n].remove(tempObj);
-                                    }
-                                    Pane newPane = new Pane();
-                                    newPane.setPrefHeight(calendarPaneColorHeight);
-                                    newPane.setPrefWidth(calendarPaneColorWidth);
-                                    newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                    newPane.cursorProperty().set(Cursor.HAND);
-                                    newPane.setId(queryOutput.getInt("roomNumber") + "_"+ m+ "_" + n);
-                                    int finalIndex4 = index;
-                                    newPane.setOnMouseClicked(mouseEvent -> {
-                                        if (cardPaneVBox.getChildren().size() != 0) {
-                                            cardPaneVBox.getChildren().clear();
-                                        }
-                                        cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex4].getText()));
-                                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                        fadeTransition.setNode(cardPane);
-                                        fadeTransition.setFromValue(0.1);
-                                        fadeTransition.setToValue(1);
-                                        fadeTransition.play();
-                                        cardPane.setVisible(true);
-                                        System.out.println(newPane.getId());
-                                    });
-                                    dayTasks[m][n].add(newPane);
+                                    cleanLabels(m, n);
+                                    dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                            m, n));
                                     break;
                                 }
-                                boolean clearObject = false;
-                                Object tempObj = null;
-                                for (Object obserb : dayTasks[m][n]) {
-                                    if (obserb instanceof Label) {
-                                        clearObject = true;
-                                        tempObj = obserb;
-                                    }
-                                }
-                                if (clearObject) {
-                                    dayTasks[m][n].remove(tempObj);
-                                }
-                                Pane newPane = new Pane();
-                                newPane.setPrefHeight(calendarPaneColorHeight);
-                                newPane.setPrefWidth(calendarPaneColorWidth);
-                                newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                newPane.cursorProperty().set(Cursor.HAND);
-                                newPane.setId(queryOutput.getInt("roomNumber") + "_"+ m+ "_" + n);
-                                int finalIndex3 = index;
-                                newPane.setOnMouseClicked(mouseEvent -> {
-                                    if (cardPaneVBox.getChildren().size() != 0) {
-                                        cardPaneVBox.getChildren().clear();
-                                    }
-                                    cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex3].getText()));
-                                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                    fadeTransition.setNode(cardPane);
-                                    fadeTransition.setFromValue(0.1);
-                                    fadeTransition.setToValue(1);
-                                    fadeTransition.play();
-                                    cardPane.setVisible(true);
-                                    System.out.println(newPane.getId());
-                                });
-                                dayTasks[m][n].add(newPane);
+                                cleanLabels(m, n);
+                                dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                        m, n));
                             }
                             firstLoop = false;
                             if (toBreakLoop2) {
@@ -758,72 +557,14 @@ public class RoomReservationController implements Initializable{
                             for (int n = 0; n < 7; n++) {
                                 if (LocalDate.parse(dayFormatCalendarMap[m][n]).compareTo(LocalDate.parse(queryOutput.getString("date_out").split(" ")[0])) == 0) {
                                     toBreakLoop2 = true;
-                                    boolean clearObject = false;
-                                    Object tempObj = null;
-                                    for (Object obserb : dayTasks[m][n]) {
-                                        if (obserb instanceof Label) {
-                                            clearObject = true;
-                                            tempObj = obserb;
-                                        }
-                                    }
-                                    if (clearObject) {
-                                        dayTasks[m][n].remove(tempObj);
-                                    }
-                                    Pane newPane = new Pane();
-                                    newPane.setPrefHeight(calendarPaneColorHeight);
-                                    newPane.setPrefWidth(calendarPaneColorWidth);
-                                    newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                    newPane.cursorProperty().set(Cursor.HAND);
-                                    newPane.setId(queryOutput.getInt("roomNumber") + "_"+ m+ "_" + n);
-                                    int finalIndex2 = index;
-                                    newPane.setOnMouseClicked(mouseEvent -> {
-                                        if (cardPaneVBox.getChildren().size() != 0) {
-                                            cardPaneVBox.getChildren().clear();
-                                        }
-                                        cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex2].getText()));
-                                        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                        fadeTransition.setNode(cardPane);
-                                        fadeTransition.setFromValue(0.1);
-                                        fadeTransition.setToValue(1);
-                                        fadeTransition.play();
-                                        cardPane.setVisible(true);
-                                        System.out.println(newPane.getId());
-                                    });
-                                    dayTasks[m][n].add(newPane);
+                                    cleanLabels(m, n);
+                                    dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                            m, n));
                                     break;
                                 }
-                                boolean clearObject = false;
-                                Object tempObj = null;
-                                for (Object obserb : dayTasks[m][n]) {
-                                    if (obserb instanceof Label) {
-                                        clearObject = true;
-                                        tempObj = obserb;
-                                    }
-                                }
-                                if (clearObject) {
-                                    dayTasks[m][n].remove(tempObj);
-                                }
-                                Pane newPane = new Pane();
-                                newPane.setPrefHeight(calendarPaneColorHeight);
-                                newPane.setPrefWidth(calendarPaneColorWidth);
-                                newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
-                                newPane.cursorProperty().set(Cursor.HAND);
-                                newPane.setId(queryOutput.getInt("roomNumber") + "_"+ m +"_" + n);
-                                int finalIndex1 = index;
-                                newPane.setOnMouseClicked(mouseEvent -> {
-                                    if (cardPaneVBox.getChildren().size() != 0) {
-                                        cardPaneVBox.getChildren().clear();
-                                    }
-                                    cardPaneVBox.getChildren().add(new Text(roomNumberText[finalIndex1].getText()));
-                                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
-                                    fadeTransition.setNode(cardPane);
-                                    fadeTransition.setFromValue(0.1);
-                                    fadeTransition.setToValue(1);
-                                    fadeTransition.play();
-                                    cardPane.setVisible(true);
-                                    System.out.println(newPane.getId());
-                                });
-                                dayTasks[m][n].add(newPane);
+                                cleanLabels(m, n);
+                                dayTasks[m][n].add(createNewPane(queryOutput.getInt("roomNumber"), index, randomColor, calendarPaneColorWidth, calendarPaneColorHeight,
+                                        m, n));
                             }
                             if (toBreakLoop2) {
                                 break;
@@ -838,106 +579,67 @@ public class RoomReservationController implements Initializable{
             throw new RuntimeException(e);
         }
     }
-    public void loadDayTasks() {
 
-        sun_1.getChildren().addAll(dayTasks[0][0]);
-        mon_2.getChildren().addAll(dayTasks[0][1]);
-        tue_3.getChildren().addAll(dayTasks[0][2]);
-        wed_4.getChildren().addAll(dayTasks[0][3]);
-        thu_5.getChildren().addAll(dayTasks[0][4]);
-        fri_6.getChildren().addAll(dayTasks[0][5]);
-        sat_7.getChildren().addAll(dayTasks[0][6]);
+    private void cleanLabels(int a, int b) {
+        boolean clearObject = false;
+        Object tempObj = null;
+        for (Object obserb : dayTasks[a][b]) {
+            if (obserb instanceof Label) {
+                clearObject = true;
+                tempObj = obserb;
+            }
+        }
+        if (clearObject) {
+            dayTasks[a][b].remove(tempObj);
+        }
+    }
 
-        sun_8.getChildren().addAll(dayTasks[1][0]);
-        mon_9.getChildren().addAll(dayTasks[1][1]);
-        tue_10.getChildren().addAll(dayTasks[1][2]);
-        wed_11.getChildren().addAll(dayTasks[1][3]);
-        thu_12.getChildren().addAll(dayTasks[1][4]);
-        fri_13.getChildren().addAll(dayTasks[1][5]);
-        sat_14.getChildren().addAll(dayTasks[1][6]);
+    public Pane createNewPane(int roomNumber, int index, Color randomColor, int paneWidth, int paneHeight, int a, int b) {
+        Pane newPane = new Pane();
+        newPane.setPrefHeight(paneHeight);
+        newPane.setPrefWidth(paneWidth);
+        newPane.setBackground(new Background(new BackgroundFill(randomColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        newPane.cursorProperty().set(Cursor.HAND);
+        newPane.setId(roomNumber + "_"+ a +"_" + b);
+        int finalIndex1 = index;
+        newPane.setOnMouseClicked(mouseEvent -> {
+            HBox hBox = new HBox();
+            Text roomNumberTextString = new Text(roomNumberText[finalIndex1].getText());
+            ImageView roomImage = new ImageView();
+            roomImage.setImage(new Image("file:src/main/resources/images/logo/"+roomNumberTextString.getText().substring(0, 1) + "_type.jpg"));
+            hBox.getChildren().addAll(roomImage, roomNumberTextString);
 
-        sun_15.getChildren().addAll(dayTasks[2][0]);
-        mon_16.getChildren().addAll(dayTasks[2][1]);
-        tue_17.getChildren().addAll(dayTasks[2][2]);
-        wed_18.getChildren().addAll(dayTasks[2][3]);
-        thu_19.getChildren().addAll(dayTasks[2][4]);
-        fri_20.getChildren().addAll(dayTasks[2][5]);
-        sat_21.getChildren().addAll(dayTasks[2][6]);
-
-        sun_22.getChildren().addAll(dayTasks[3][0]);
-        mon_23.getChildren().addAll(dayTasks[3][1]);
-        tue_24.getChildren().addAll(dayTasks[3][2]);
-        wed_25.getChildren().addAll(dayTasks[3][3]);
-        thu_26.getChildren().addAll(dayTasks[3][4]);
-        fri_27.getChildren().addAll(dayTasks[3][5]);
-        sat_28.getChildren().addAll(dayTasks[3][6]);
-
-        sun_29.getChildren().addAll(dayTasks[4][0]);
-        mon_30.getChildren().addAll(dayTasks[4][1]);
-        tue_31.getChildren().addAll(dayTasks[4][2]);
-        wed_32.getChildren().addAll(dayTasks[4][3]);
-        thu_33.getChildren().addAll(dayTasks[4][4]);
-        fri_34.getChildren().addAll(dayTasks[4][5]);
-        sat_35.getChildren().addAll(dayTasks[4][6]);
-
-        sun_36.getChildren().addAll(dayTasks[5][0]);
-        mon_37.getChildren().addAll(dayTasks[5][1]);
-        tue_38.getChildren().addAll(dayTasks[5][2]);
-        wed_39.getChildren().addAll(dayTasks[5][3]);
-        thu_40.getChildren().addAll(dayTasks[5][4]);
-        fri_41.getChildren().addAll(dayTasks[5][5]);
-        sat_42.getChildren().addAll(dayTasks[5][6]);
-
-        sun_1.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_2.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_3.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_4.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_5.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_6.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_7.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[0][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        sun_8.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_9.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_10.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_11.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_12.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_13.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_14.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[1][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        sun_15.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_16.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_17.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_18.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_19.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_20.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_21.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[2][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        sun_22.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_23.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_24.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_25.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_26.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_27.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_28.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[3][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        sun_29.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_30.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_31.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_32.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_33.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_34.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_35.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[4][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        sun_36.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][0]), CornerRadii.EMPTY, Insets.EMPTY)));
-        mon_37.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][1]), CornerRadii.EMPTY, Insets.EMPTY)));
-        tue_38.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][2]), CornerRadii.EMPTY, Insets.EMPTY)));
-        wed_39.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][3]), CornerRadii.EMPTY, Insets.EMPTY)));
-        thu_40.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][4]), CornerRadii.EMPTY, Insets.EMPTY)));
-        fri_41.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][5]), CornerRadii.EMPTY, Insets.EMPTY)));
-        sat_42.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[5][6]), CornerRadii.EMPTY, Insets.EMPTY)));
-
-
-
+            if (cardPaneVBox.getChildren().size() != 0) {
+                cardPaneVBox.getChildren().clear();
+            }
+            cardPaneVBox.getChildren().add(hBox);
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5));
+            fadeTransition.setNode(cardPane);
+            fadeTransition.setFromValue(0.1);
+            fadeTransition.setToValue(1);
+            fadeTransition.play();
+            cardPane.setVisible(true);
+            System.out.println(newPane.getId());
+        });
+        return newPane;
+    }
+    public void loadDayTasks() throws IllegalAccessException {
+        int index1 = 0;
+        int index2 = 0;
+        Object object = this;
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (index2 % 7 == 0 && index2 != 0) {
+                index1++;
+                index2 = 0;
+            }
+            if (field.get(object) instanceof VBox && field.getName().substring(3, 4).equals("_")) {
+                VBox vBox = (VBox) field.get(object);
+                vBox.getChildren().addAll(dayTasks[index1][index2]);
+                vBox.setBackground(new Background(new BackgroundFill(Paint.valueOf(calendarPaneColor[index1][index2]), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+            index2++;
+        }
     }
     public void clearVboxForCalendarPane() {
         sun_1.getChildren().clear();
@@ -1027,27 +729,7 @@ public class RoomReservationController implements Initializable{
                         vBox1.setBackground(new Background(new BackgroundFill(Color.web(calendarPaneColor[finalX][finalY]), CornerRadii.EMPTY, Insets.EMPTY)));
                     });
                 }
-
-                /*
-                else {
-
-                }
-
-                 */
             }
-            /*
-            VBox vBox = (VBox) mouseEvent.getSource();
-            System.out.println( vBox.getId());
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hotelmanagement/actionFXMLs/RoomReservation/RoomReservation.fxml"));
-            fxmlLoader.setController(this);
-            Parent root = (Parent) fxmlLoader.load();
-            Field[] field = root.getClass().getDeclaredFields();
-            for (Field tempField : field) {
-                if (tempField.getName().equals(vBox.getId())) {
-                    System.out.println("This is id caught: " + tempField.getName());
-                }
-            }*/
         }
         catch (Exception e) {
             e.printStackTrace();

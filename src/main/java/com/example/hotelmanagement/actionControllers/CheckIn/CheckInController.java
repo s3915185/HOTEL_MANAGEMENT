@@ -486,7 +486,6 @@ public class CheckInController implements Initializable {
     }
 
     public void addResClicked() {
-        System.out.println("Went to Add REs");
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
@@ -501,9 +500,6 @@ public class CheckInController implements Initializable {
             String timeIn = dateIn + " " + hourIn + ":" + minuteIn + ":00";
             String timeOut = dateOut + " " + hourOut + ":" + minuteOut + ":00";
 
-            System.out.println("Time In: " + timeIn);
-            System.out.println("Time Out: " + timeOut);
-
             for (RoomInformation room : Main.getRoomData()) {
                 if (room.getRoom_number() == Integer.valueOf(choiceboxRoomNumberRI.getText())) {
                     String connectQuery = "INSERT INTO reservation (room_ID, date_in, date_out, customer_ID) VALUES " +
@@ -517,7 +513,6 @@ public class CheckInController implements Initializable {
                     break;
                 }
             }
-            System.out.println("Get through here");
 
             String secondQuery = "insert into hotelmanagement.payment (customer_ID, payment_date, amount, reservation_ID, payment_type)\n" +
                     "values (?, ?, ?, \n" +

@@ -16,8 +16,6 @@ public class PaymentCashController {
         LocalDateTime LocalDateTime = java.time.LocalDateTime.now();
         String date = LocalDateTime.getYear()+"-"+LocalDateTime.getMonthValue()+"-"+LocalDateTime.getDayOfMonth();
         String time = LocalDateTime.getHour()+":"+LocalDateTime.getMinute()+":"+LocalDateTime.getSecond();
-        System.out.println("Date: " + date);
-        System.out.println("Time: "+ time);
         Main.setRandomObjectPayment(new PaymentInformation(Main.getIDcurrentGuest(), date, time, 0, 0, "CASH"));
         Stage stage = (Stage) payWithCashBtn.getScene().getWindow();
         stage.close();
